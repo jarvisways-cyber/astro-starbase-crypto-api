@@ -1,6 +1,5 @@
-﻿# A.S.T.R.O. Starbase — Crypto Intelligence API
-
-**Asset · Sentiment · Trend · Risk · Oracle**
+# A.S.T.R.O.
+### Asset · Sentiment · Trend · Risk · Oracle
 
 > **Not a signal. A translation of the market itself.**
 
@@ -76,7 +75,7 @@ An ETF approval signal scores BTC at maximum relevance and DOGE at minimal. An S
 
 **Velocity** — the rate of change in Ascendancy between cycles, revealing whether conditions are accelerating toward an asset or retreating from it.
 
-These two scores feed directly into the Asset Gate, the Shield dynamic calibration, and per-asset position sizing inside the engine.
+These two scores feed directly into the Asset Gate, the Shield's dynamic calibration, and per-asset position sizing inside the engine.
 
 ---
 
@@ -149,7 +148,11 @@ Same historical dataset (June 2024 – June 2026, 721 days). Validated across se
 | Max Drawdown | -17.0% | -15.8% | +1.2pp |
 | Avg Win % | 15.8% | 19.0% | +3.2pp |
 | Avg Loss % | -17.8% | -14.0% | +3.8pp |
-| Trades | 102 | 71 | -31 (higher quality) |
+| Trades | 102 | 71 | −31 (higher quality) |
+
+Key validated improvements: FNG gate raised (60→65), regime-aware Kelly sizing (0.10x bear / 0.30x bull), portfolio circuit breaker, asset pruning, velocity filter.
+
+Note: Backtests use 5 of 9 real signals — remaining signals pinned neutral due to historical data limitations. Live oracle forward-testing is the primary validation method for the full 9-signal composite.
 
 ---
 
@@ -157,14 +160,15 @@ Same historical dataset (June 2024 – June 2026, 721 days). Validated across se
 
 | Component | Status |
 |-----------|--------|
-| 9-signal oracle architecture | Live |
-| Prediction market layer (Polymarket + Kalshi) | Active |
-| Per-asset ascendancy + velocity scoring | Live |
-| Continuous ~15-minute oracle cycles | Running |
-| REST API — 5 endpoints | Live |
-| Outcome tracking (1h + 4h) | Logging every cycle |
-| Stripe payment + instant key delivery | Live |
-| Self-optimizing weight layer (Module 8) | Building — target: 2,000 cycles |
+| 9-signal oracle architecture | ✅ Live |
+| Prediction market layer (Polymarket + Kalshi) | ✅ Active |
+| Per-asset ascendancy + velocity scoring | ✅ Live |
+| Continuous ~15-minute oracle cycles | ✅ Running |
+| REST API — 5 endpoints | ✅ Live |
+| Outcome tracking (1h + 4h) | ✅ Logging every cycle |
+| Stripe payment + instant key delivery | ✅ Live |
+| Self-optimizing weight layer (Module 8) | 🔄 Building — target: 2,000 cycles |
+| Live trading activation | 🔄 Accumulating auditable paper history |
 
 ---
 
@@ -174,13 +178,19 @@ Same historical dataset (June 2024 – June 2026, 721 days). Validated across se
 
 API key delivered instantly to your email upon payment.
 
-**[astro-event-horizon.vercel.app](https://astro-event-horizon.vercel.app)**
+**[→ astro-event-horizon.vercel.app](https://astro-event-horizon.vercel.app)**
 
 ---
 
-## About ASTRO Starbase
+## Philosophy
 
-ASTRO Starbase is the intelligence distribution layer of the A.S.T.R.O. architecture. Each Starbase repository houses a domain-specific API client powered by the same underlying cognition engine. This repo: crypto market intelligence. The architecture is designed to extend — equities, macro, derivatives, and beyond.
+ASTRO was built on a simple frustration: every trading tool treats signals as isolated facts. Buy when RSI is oversold. Sell when the line crosses. But markets are systems — fear, liquidity, macro pressure, on-chain behavior, and institutional positioning all interact simultaneously. Ignoring that interaction is why most bots fail the moment the regime changes.
+
+ASTRO's oracle exists to model that interaction. Every signal domain is a different lens on the same underlying reality. The composite score is ASTRO's best answer to the question every trader actually wants answered:
+
+*What is the market doing right now — and is this a good time to be in it?*
+
+No charts to interpret. No indicators to configure. No noise.
 
 ---
 

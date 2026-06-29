@@ -1,0 +1,266 @@
+openapi: 3.0.3
+info:
+  title: A.S.T.R.O. Oracle API
+  description: >
+    Asset · Sentiment · Trend · Risk · Oracle.
+    A composite probability framework for digital assets, synthesized from
+    nine independent signal domains including prediction market intelligence.
+  version: "0.1.0"
+  contact:
+    name: JARVIS
+    url: https://github.com/jarvisways-cyber
+  license:
+    name: MIT
+
+servers:
+  - url: https://astro-event-horizon.vercel.app/api/signal
+    description: Production
+
+security:
+  - ApiKeyHeader: []
+  - ApiKeyQuery: []
+
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+
+  schemas:
+    Regime:
+      type: string
+      enum: [BULL, BEAR, BEAR_ACCUMULATION, RECOVERY, CHOP, BEARISH]
+
+    GateStatus:
+      type: string
+      enum: [OPEN, BLOCKED]
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid or expired API key."
+        code:
+          type: string
+          example: "AUTH_INVALID"
+
+    CompositeReading:
+      type: object
+      properties:
+        composite:
+          type: number
+          example: 53.18
+        regime:
+          $ref: "#/components/schemas/Regime"
+        btc_price:
+          type: number
+          example: 59441.40
+        signals:
+          type: object
+          properties:
+            fear_greed: { type: number }
+            market_structure: { type: number }
+            funding_rates: { type: number }
+            liquidity_pressure: { type: number }
+            macro_correlation: { type: number }
+            onchain_flows: { type: number }
+            options_flow: { type: number }
+            narrative_sentiment: { type: number }
+            congress_smart_money: { type: number }
+        watching:
+          type: array
+          items:
+            type: object
+            properties:
+              symbol: { type: string }
+              change_24h: { type: number }
+        last_updated:
+          type: string
+          format: date-time
+
+    AssetGate:
+      type: object
+      properties:
+        gate:
+          $ref: "#/components/schemas/GateStatus"
+        strategy:
+          type: string
+          nullable: true
+          example: "CANDLE_REVERSAL"
+        confidence:
+          type: number
+          nullable: true
+          example: 0.847
+        ascendancy:
+          type: number
+          example: 43.1
+        velocity:
+          type: number
+          example: 9.3
+        candle_pattern:
+          type: string
+          nullable: true
+          example: "MARUBOZU"
+        regime:
+          $ref: "#/components/schemas/Regime"
+        confluence:
+          type: string
+          example: "BULL"
+        dimension_scores:
+          type: object
+          additionalProperties:
+            type: number
+        position:
+          type: object
+          nullable: true
+
+    AssetSnapshot:
+      type: object
+      properties:
+        ascendancy: { type: number }
+        velocity: { type: number }
+        sma200: { type: number, nullable: true }
+        gate:
+          $ref: "#/components/schemas/GateStatus"
+
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    RateLimited:
+      description: >
+        Exceeded 1 request per 15-minute oracle cycle. Retry-After header
+        indicates seconds until the next cycle completes.
+      headers:
+        Retry-After:
+          schema: { type: integer }
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    CycleNotReady:
+      description: Oracle is mid-cycle; no fresh reading available yet. Previous cycle's data is still served where applicable.
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+paths:
+  /oracle/composite:
+    get:
+      summary: Full composite score, regime, and top movers
+      operationId: getComposite
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CompositeReading" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /oracle/signals:
+    get:
+      summary: Individual signal domain breakdown (11 signals)
+      operationId: getSignals
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /oracle/assets:
+    get:
+      summary: Per-asset ascendancy, velocity, SMA200, gate status
+      operationId: getAssets
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: "#/components/schemas/AssetSnapshot"
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /oracle/regime:
+    get:
+      summary: Regime context, confluence, 4h trend, shift
+      operationId: getRegime
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /oracle/risk:
+    get:
+      summary: Risk mode, kelly multiplier, max positions
+      operationId: getRisk
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /oracle/prices:
+    get:
+      summary: Live prices for all 10 supported assets
+      operationId: getPrices
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /oracle/congress:
+    get:
+      summary: Congressional smart-money composite signal detail
+      operationId: getCongress
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /oracle/history:
+    get:
+      summary: Historical oracle cycles with 1h + 4h outcome tracking
+      operationId: getHistory
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, default: 100 }
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /oracle/gate/{asset}:
+    get:
+      summary: Complete single-asset decision package
+      operationId: getAssetGate
+      parameters:
+        - name: asset
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [BTC, ETH, SOL, ADA, DOGE, LINK, DOT, POL, ARB, OP]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AssetGate" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404":
+          description: Unsupported asset symbol
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /oracle/basket:
+    get:
+      summary: Full 10-asset scan in one call
+      operationId: getBasket
+      responses:
+        "200": { description: OK }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "429": { $ref: "#/components/responses/RateLimited" }
