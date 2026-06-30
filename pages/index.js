@@ -214,7 +214,7 @@ export default function Home() {
           gap: 6px 14px;
           justify-content: center;
         }
-        .about-section li::before { content: "• "; color: #555; }
+        .about-section li::before { content: "â€¢ "; color: #555; }
         .dev-section {
           margin-top: 14px;
           border: 1px solid #333;
@@ -286,14 +286,17 @@ export default function Home() {
 
       <div className="terminal">
 
+        <div style={{textAlign:"right",marginBottom:"8px"}}>
+          <a href="/bot" style={{fontFamily:"Share Tech Mono,monospace",fontSize:"0.65rem",color:"#FFB800",textDecoration:"none",border:"1px solid #FFB800",padding:"0.2rem 0.6rem",letterSpacing:"2px"}}>→ ASTRO TRADE BOT</a>
+        </div>
         <div className="top-bar">
           <span>
-            <span className="br">—[ </span><span className="g">SYS::ONLINE</span>
-            <span className="br"> ]—[ </span><span className="g">GATE::ARMED</span>
-            <span className="br"> ]—[ </span><span className="g">ORACLE::ACTIVE</span>
-            <span className="br"> ]——————————————————————————————</span>
+            <span className="br">â€”[ </span><span className="g">SYS::ONLINE</span>
+            <span className="br"> ]â€”[ </span><span className="g">GATE::ARMED</span>
+            <span className="br"> ]â€”[ </span><span className="g">ORACLE::ACTIVE</span>
+            <span className="br"> ]â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”</span>
           </span>
-          <span><span className="br">[ </span><span className="g">v4:20</span><span className="br"> ]—</span></span>
+          <span><span className="br">[ </span><span className="g">v4:20</span><span className="br"> ]â€”</span></span>
         </div>
 
         <div className="main-frame">
@@ -305,69 +308,69 @@ export default function Home() {
         </div>
 
         <div className="acronym-bar">
-          <span className="br">—[ </span><span className="hl-gold">A</span><span className="wh">sset</span>
-          <span className="br"> ]——[ </span><span className="hl-green">S</span><span className="wh">entiment</span>
-          <span className="br"> ]——[ </span><span className="hl-cyan">T</span><span className="wh">rend</span>
-          <span className="br"> ]——[ </span><span className="hl-red">R</span><span className="wh">isk</span>
-          <span className="br"> ]——[ </span><span className="hl-purple">O</span><span className="wh">racle</span>
-          <span className="br"> ]——————————</span>
+          <span className="br">â€”[ </span><span className="hl-gold">A</span><span className="wh">sset</span>
+          <span className="br"> ]â€”â€”[ </span><span className="hl-green">S</span><span className="wh">entiment</span>
+          <span className="br"> ]â€”â€”[ </span><span className="hl-cyan">T</span><span className="wh">rend</span>
+          <span className="br"> ]â€”â€”[ </span><span className="hl-red">R</span><span className="wh">isk</span>
+          <span className="br"> ]â€”â€”[ </span><span className="hl-purple">O</span><span className="wh">racle</span>
+          <span className="br"> ]â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”</span>
         </div>
 
         <div className="owl-row">
           <div className="owl-box">{`'---'\n[0.0]\n/)_(\\`}</div>
           <div className="tagline">
-            <span className="tw">VECTOR</span>{" · sentinel · always watching · never afraid"}
+            <span className="tw">VECTOR</span>{" Â· sentinel Â· always watching Â· never afraid"}
           </div>
         </div>
 
-        <div className="section-header">— MISSION ]———————————————————————————————————————————————————</div>
+        <div className="section-header">â€” MISSION ]â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”</div>
         <div className="mission-row">
-          <span className="arr-identify">▶</span>
+          <span className="arr-identify">â–¶</span>
           <span className="kw-identify">IDENTIFY</span>
-          <span className="br">[ </span><span className="muted">F&G</span><span className="br"> ]——[ </span>
-          <span className="muted">market structure</span><span className="br"> ]——[ </span>
+          <span className="br">[ </span><span className="muted">F&G</span><span className="br"> ]â€”â€”[ </span>
+          <span className="muted">market structure</span><span className="br"> ]â€”â€”[ </span>
           <span className="muted">prediction mkts</span><span className="br"> ]</span>
         </div>
         <div className="mission-row">
-          <span className="arr-enter">▶</span>
+          <span className="arr-enter">â–¶</span>
           <span className="kw-enter">ENTER</span>
-          <span className="br">[ </span><span className="muted">top-3 momentum</span><span className="br"> ]——[ </span>
+          <span className="br">[ </span><span className="muted">top-3 momentum</span><span className="br"> ]â€”â€”[ </span>
           <span className="muted">kelly-sized positions</span><span className="br"> ]</span>
         </div>
         <div className="mission-row">
-          <span className="arr-protect">▶</span>
+          <span className="arr-protect">â–¶</span>
           <span className="kw-protect">PROTECT</span>
-          <span className="br">[ </span><span className="kw-r">hard stop -12%</span><span className="br"> ]——[ </span>
+          <span className="br">[ </span><span className="kw-r">hard stop -12%</span><span className="br"> ]â€”â€”[ </span>
           <span className="kw-g">trailing floor +8%</span><span className="br"> ]</span>
         </div>
         <div className="mission-row">
-          <span className="arr-capture">▶</span>
+          <span className="arr-capture">â–¶</span>
           <span className="kw-capture">CAPTURE</span>
-          <span className="br">[ </span><span className="kw-y">target +25%</span><span className="br"> ]——[ </span>
+          <span className="br">[ </span><span className="kw-y">target +25%</span><span className="br"> ]â€”â€”[ </span>
           <span className="muted">never fight the trend</span><span className="br"> ]</span>
         </div>
 
         <div className="event-key-section">
-          <div className="ev-hdr">— EVENT KEY ]</div>
+          <div className="ev-hdr">â€” EVENT KEY ]</div>
           <div className="badge-row">
-            <span className="badge b-green">▶ ENTRY</span>
-            <span className="badge b-red">✕ STOP</span>
-            <span className="badge b-purple">⚡ SHIELD</span>
-            <span className="badge b-blue">◇ ORACLE</span>
-            <span className="badge b-gold">◆ GATE</span>
+            <span className="badge b-green">â–¶ ENTRY</span>
+            <span className="badge b-red">âœ• STOP</span>
+            <span className="badge b-purple">âš¡ SHIELD</span>
+            <span className="badge b-blue">â—‡ ORACLE</span>
+            <span className="badge b-gold">â—† GATE</span>
           </div>
           <div className="badge-row">
-            <span className="badge b-green2">✓ PROFIT</span>
-            <span className="badge b-gray">↑ TRAIL</span>
-            <span className="badge b-gray">○ RANKER</span>
-            <span className="badge b-warn">⚠ WARNING</span>
+            <span className="badge b-green2">âœ“ PROFIT</span>
+            <span className="badge b-gray">â†‘ TRAIL</span>
+            <span className="badge b-gray">â—‹ RANKER</span>
+            <span className="badge b-warn">âš  WARNING</span>
           </div>
         </div>
 
         <div className="bottom-bar">
           <span>Log: orchestrator.log</span>
-          <span><span className="live-dot">● </span><span className="live-time">LIVE {time}</span></span>
-          <span>Ctrl+C to exit · streaming...</span>
+          <span><span className="live-dot">â— </span><span className="live-time">LIVE {time}</span></span>
+          <span>Ctrl+C to exit Â· streaming...</span>
         </div>
 
         <div className="about-section">
@@ -388,31 +391,31 @@ export default function Home() {
           </ul>
           <p>Each layer is processed through an intellectual reaction stack that models how institutional algorithms, market makers, liquidity providers, retail participants, and autonomous trading systems are likely to respond under current conditions.</p>
           <p>Rather than measuring what the market is doing, <span className="em">A.S.T.R.O.</span> measures what the market is likely to do next.</p>
-          <p>The engine synthesizes millions of data points into a single <span className="gr">Asset Gate Status</span> — a continuously evolving probability score that identifies whether capital conditions favor accumulation, expansion, distribution, or contraction for any supported asset.</p>
+          <p>The engine synthesizes millions of data points into a single <span className="gr">Asset Gate Status</span> â€” a continuously evolving probability score that identifies whether capital conditions favor accumulation, expansion, distribution, or contraction for any supported asset.</p>
           <p>Bitcoin. Ethereum. Solana. Equities. Macro proxies. Any market where behavior leaves a measurable footprint.</p>
           <p>The result is a machine-readable translation layer between raw market complexity and actionable intelligence.</p>
           <p>No charts to interpret.<br />No indicators to configure.<br />No noise.</p>
           <p>One API request every fifteen minutes delivers a complete strategic assessment generated by the <span className="em">A.S.T.R.O. Oracle Engine</span>.</p>
-          <p>For traders, funds, quantitative systems, and autonomous agents seeking an informational edge, <span className="em">A.S.T.R.O.</span> functions as a market operating system — decoding the collective behavior of global capital in real time.</p>
+          <p>For traders, funds, quantitative systems, and autonomous agents seeking an informational edge, <span className="em">A.S.T.R.O.</span> functions as a market operating system â€” decoding the collective behavior of global capital in real time.</p>
           <p style={{textAlign: "center", color: "#888"}}>Not a signal.<br />A translation of the market itself.</p>
         </div>
 
         <div className="dev-section">
-          <div className="dev-header">— FOR DEVELOPERS ]</div>
+          <div className="dev-header">â€” FOR DEVELOPERS ]</div>
           <div className="dev-subtext">Integrate <span>A.S.T.R.O.</span> intelligence directly into your trading system, bot, or algorithm.</div>
 
           <div className="code-block">
             <div className="code-label"><span className="lang">endpoints</span></div>
-            <div><span className="c-key">/oracle/composite</span>   <span className="c-comment">{'  # composite · regime · top asset · btc price'}</span></div>
-            <div><span className="c-key">/oracle/signals</span>     <span className="c-comment">{'    # 11 signals · momentum · sentiment · stablecoin supply · fed cut prob'}</span></div>
-            <div><span className="c-key">/oracle/assets</span>      <span className="c-comment">{'     # per-asset gate · ascendancy · velocity · SMA200 · funding score'}</span></div>
-            <div><span className="c-key">/oracle/regime</span>      <span className="c-comment">{'     # regime context · confluence · 4h trend · shift'}</span></div>
-            <div><span className="c-key">/oracle/risk</span>        <span className="c-comment">{'       # risk mode · kelly multiplier · max positions'}</span></div>
-            <div><span className="c-key">/oracle/prices</span>      <span className="c-comment">{'     # live prices · all 10 assets'}</span></div>
+            <div><span className="c-key">/oracle/composite</span>   <span className="c-comment">{'  # composite Â· regime Â· top asset Â· btc price'}</span></div>
+            <div><span className="c-key">/oracle/signals</span>     <span className="c-comment">{'    # 11 signals Â· momentum Â· sentiment Â· stablecoin supply Â· fed cut prob'}</span></div>
+            <div><span className="c-key">/oracle/assets</span>      <span className="c-comment">{'     # per-asset gate Â· ascendancy Â· velocity Â· SMA200 Â· funding score'}</span></div>
+            <div><span className="c-key">/oracle/regime</span>      <span className="c-comment">{'     # regime context Â· confluence Â· 4h trend Â· shift'}</span></div>
+            <div><span className="c-key">/oracle/risk</span>        <span className="c-comment">{'       # risk mode Â· kelly multiplier Â· max positions'}</span></div>
+            <div><span className="c-key">/oracle/prices</span>      <span className="c-comment">{'     # live prices Â· all 10 assets'}</span></div>
             <div><span className="c-key">/oracle/congress</span>    <span className="c-comment">{'    # congressional smart money composite'}</span></div>
-            <div><span className="c-key">/oracle/history</span>     <span className="c-comment">{'    # oracle cycle history · full signal log'}</span></div>
+            <div><span className="c-key">/oracle/history</span>     <span className="c-comment">{'    # oracle cycle history Â· full signal log'}</span></div>
             <div><span className="c-key">/oracle/gate/:asset</span> <span className="c-comment">{'# complete single-asset decision package'}</span></div>
-            <div><span className="c-key">/oracle/basket</span>      <span className="c-comment">{'     # full 10-asset scan · one call'}</span></div>
+            <div><span className="c-key">/oracle/basket</span>      <span className="c-comment">{'     # full 10-asset scan Â· one call'}</span></div>
           </div>
 
           <div className="code-block">
@@ -433,29 +436,29 @@ export default function Home() {
           </div>
 
           <div className="code-block">
-            <div className="code-label"><span className="lang">python</span> <span style={{color:"#555"}}>// full decision package — one call</span></div>
+            <div className="code-label"><span className="lang">python</span> <span style={{color:"#555"}}>// full decision package â€” one call</span></div>
             <div><span className="c-var">gate</span> = <span className="c-var">client</span>.<span className="c-fn">gate</span>(<span className="c-str">"SOL"</span>)</div>
             <br />
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">gate</span>)              <span className="c-comment"># "OPEN" or "BLOCKED"</span></div>
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">strategy</span>)          <span className="c-comment"># "CANDLE_REVERSAL"</span></div>
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">confidence</span>)        <span className="c-comment"># 0.847</span></div>
-            <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">ascendancy</span>)        <span className="c-comment"># 43.1 — prediction market crowd score</span></div>
-            <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">velocity</span>)          <span className="c-comment"># +9.3 — momentum direction</span></div>
+            <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">ascendancy</span>)        <span className="c-comment"># 43.1 â€” prediction market crowd score</span></div>
+            <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">velocity</span>)          <span className="c-comment"># +9.3 â€” momentum direction</span></div>
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">candle_pattern</span>)    <span className="c-comment"># "MARUBOZU"</span></div>
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">regime</span>)            <span className="c-comment"># "RECOVERY"</span></div>
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">confluence</span>)        <span className="c-comment"># "BULL"</span></div>
-            <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">dimension_scores</span>)  <span className="c-comment"># fng · breadth · vol · price_vs_sma ...</span></div>
+            <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">dimension_scores</span>)  <span className="c-comment"># fng Â· breadth Â· vol Â· price_vs_sma ...</span></div>
             <div><span className="c-kw">print</span>(<span className="c-var">gate</span>.<span className="c-key">position</span>)          <span className="c-comment"># current position + live P&L</span></div>
             <br />
             <div><span className="c-comment"># scan the whole basket in one call</span></div>
             <div><span className="c-var">basket</span> = <span className="c-var">client</span>.<span className="c-fn">basket</span>()</div>
-            <div><span className="c-var">open_now</span> = <span className="c-var">basket</span>.<span className="c-key">open_assets</span>  <span className="c-comment"># ["BTC","ETH"] — actionable right now</span></div>
+            <div><span className="c-var">open_now</span> = <span className="c-var">basket</span>.<span className="c-key">open_assets</span>  <span className="c-comment"># ["BTC","ETH"] â€” actionable right now</span></div>
           </div>
         </div>
 
         <div className="cta-section">
           <div className="cta-label">
-            <span>$9 / month</span> · recurring · cancel anytime
+            <span>$9 / month</span> Â· recurring Â· cancel anytime
           </div>
           <a className="cta-btn" href="https://buy.stripe.com/aFa9ATa4d1tk7DkbgcaAw01">ACQUIRE ACCESS</a>
         </div>
