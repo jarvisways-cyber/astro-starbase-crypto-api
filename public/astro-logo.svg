@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 110">
+ <defs>
+ <filter id="g">
+ <feGaussianBlur stdDeviation="2.5" result="b"/>
+ <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+ </filter>
+ </defs>
+ <text x="50%" y="86" font-family="'Courier New',monospace" font-weight="bold" font-size="100" text-anchor="middle" letter-spacing="10" fill="#f5c518" filter="url(#g)">A.S.T.R.O.</text>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "name": "astro-event-horizon",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.38.0",
+    "next": "latest",
+    "nodemailer": "^8.0.11",
+    "react": "latest",
+    "react-dom": "latest",
+    "stripe": "^22.2.0"
+  }
+}

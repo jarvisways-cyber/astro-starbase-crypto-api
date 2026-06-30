@@ -1,0 +1,1 @@
+export default function Privacy() { return <div style={{color:"white",padding:"2rem",fontFamily:"monospace"}}><h1>Privacy Policy</h1><p>ASTRO Intelligence API collects only your email address for account delivery purposes. We do not sell or share your data.</p></div>; }

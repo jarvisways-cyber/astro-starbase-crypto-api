@@ -1,0 +1,1 @@
+export default function Terms() { return <div style={{color:"white",padding:"2rem",fontFamily:"monospace"}}><h1>Terms of Service</h1><p>ASTRO Intelligence API is provided as-is for informational purposes only. Not financial advice. Use at your own risk.</p></div>; }
