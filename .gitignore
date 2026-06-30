@@ -1,2 +1,22 @@
+﻿# Next.js / Node
 .vercel
 .env*
+node_modules/
+.next/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# OS / misc
+.DS_Store
+*.log
