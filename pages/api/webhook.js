@@ -2,7 +2,8 @@ import Stripe from "stripe";
 import { Redis } from "@upstash/redis";
 import nodemailer from "nodemailer";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripeLive = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripeTest = new Stripe(process.env.STRIPE_SECRET_KEY_TEST);
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
@@ -66,13 +67,17 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   let event;
+  let stripe;
   try {
     const raw = await getRawBody(req);
     const sig = req.headers["stripe-signature"];
-    const secrets = [process.env.STRIPE_WEBHOOK_SECRET, process.env.STRIPE_WEBHOOK_SECRET_TEST].filter(Boolean);
+    const secrets = [
+      { secret: process.env.STRIPE_WEBHOOK_SECRET, client: stripeLive },
+      { secret: process.env.STRIPE_WEBHOOK_SECRET_TEST, client: stripeTest },
+    ].filter(s => s.secret);
     let lastErr;
-    for (const secret of secrets) {
-      try { event = stripe.webhooks.constructEvent(raw, sig, secret); break; } catch (e) { lastErr = e; }
+    for (const { secret, client } of secrets) {
+      try { event = client.webhooks.constructEvent(raw, sig, secret); stripe = client; break; } catch (e) { lastErr = e; }
     }
     if (!event) return res.status(400).json({ error: lastErr.message });
   } catch (err) {
