@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const BOT_PRICE_ID = "price_1To6gQFwvxiyT5vxlwbzhuN3";
+const BOT_PRICE_IDS = ["price_1To6gQFwvxiyT5vxlwbzhuN3", "price_1ToVEuFwvxiyT5vxRqMLceDP"]; // [live, test]
 
 function generateKey() {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -93,7 +93,7 @@ export default async function handler(req, res) {
       console.error("[ASTRO] Failed to fetch line items:", err.message);
     }
 
-    if (priceId === BOT_PRICE_ID) {
+    if (BOT_PRICE_IDS.includes(priceId)) {
       const token = generateToken();
       const expires = Date.now() + 72 * 60 * 60 * 1000;
 
