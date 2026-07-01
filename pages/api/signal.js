@@ -1,9 +1,9 @@
-export default async function handler(req, res) {
+﻿export default async function handler(req, res) {
   const { api_key } = req.query;
   if (!api_key) return res.status(400).json({ error: "api_key required" });
   try {
     const r = await fetch(
-      `https://unlit-mobility-aftermost.ngrok-free.dev/oracle/composite?api_key=${encodeURIComponent(api_key)}`,
+      `https://lair-impotence-phonebook.ngrok-free.dev/oracle/composite?api_key=${encodeURIComponent(api_key)}`,
       { headers: { "User-Agent": "astro-portal-proxy/1.0", "ngrok-skip-browser-warning": "1" } }
     );
     const data = await r.json();
@@ -13,3 +13,4 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: "upstream unavailable", detail: String(err) });
   }
 }
+
