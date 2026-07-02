@@ -2,8 +2,21 @@ import Stripe from "stripe";
 import { Redis } from "@upstash/redis";
 import nodemailer from "nodemailer";
 
-const stripeLive = new Stripe(process.env.STRIPE_SECRET_KEY);
-const stripeTest = new Stripe(process.env.STRIPE_SECRET_KEY_TEST);
+let _stripeLive, _stripeTest;
+function getStripeLive() {
+  if (!_stripeLive) {
+    if (!process.env.STRIPE_SECRET_KEY) throw new Error("STRIPE_SECRET_KEY is missing");
+    _stripeLive = new Stripe(process.env.STRIPE_SECRET_KEY);
+  }
+  return _stripeLive;
+}
+function getStripeTest() {
+  if (!_stripeTest) {
+    if (!process.env.STRIPE_SECRET_KEY_TEST) throw new Error("STRIPE_SECRET_KEY_TEST is missing");
+    _stripeTest = new Stripe(process.env.STRIPE_SECRET_KEY_TEST);
+  }
+  return _stripeTest;
+}
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
@@ -72,8 +85,8 @@ export default async function handler(req, res) {
     const raw = await getRawBody(req);
     const sig = req.headers["stripe-signature"];
     const secrets = [
-      { secret: process.env.STRIPE_WEBHOOK_SECRET, client: stripeLive },
-      { secret: process.env.STRIPE_WEBHOOK_SECRET_TEST, client: stripeTest },
+      { secret: process.env.STRIPE_WEBHOOK_SECRET, get client() { return getStripeLive(); } },
+      { secret: process.env.STRIPE_WEBHOOK_SECRET_TEST, get client() { return getStripeTest(); } },
     ].filter(s => s.secret);
     let lastErr;
     for (const { secret, client } of secrets) {
