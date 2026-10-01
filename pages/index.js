@@ -1,4 +1,5 @@
 import Head from "next/head";
+import DataAttribution from "../components/DataAttribution";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -462,6 +463,8 @@ export default function Home() {
           </div>
           <a className="cta-btn" href="https://buy.stripe.com/aFa9ATa4d1tk7DkbgcaAw01">ACQUIRE ACCESS</a>
         </div>
+
+        <DataAttribution />
 
       </div>
     </>

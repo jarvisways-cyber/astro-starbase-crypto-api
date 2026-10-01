@@ -1,4 +1,5 @@
 import Head from "next/head";
+import DataAttribution from "../components/DataAttribution";
 import { useEffect, useState } from "react";
 
 export default function Bot() {
@@ -324,6 +325,8 @@ export default function Bot() {
           <span><span className="live-dot">● </span><span className="live-time">LIVE {time}</span></span>
           <span>Ctrl+C to exit · streaming...</span>
         </div>
+
+        <DataAttribution />
 
       </div>
     </>
