@@ -3,14 +3,16 @@ Scan the full 10-asset basket and print only the assets whose gate is
 currently OPEN — useful as a building block for a bot's entry scanner.
 
 Run:
-    ASTRO_API_KEY=your-key python examples/scan_open_gates.py
+    python examples/scan_open_gates.py
 """
+
+from getpass import getpass
 
 from astro_intelligence import ASTRO
 
 SUPPORTED = ["BTC", "ETH", "SOL", "ADA", "DOGE", "LINK", "DOT", "POL", "ARB", "OP"]
 
-client = ASTRO()
+client = ASTRO(api_key=getpass("ASTRO API key: "))
 
 print("Scanning basket for open gates...\n")
 open_assets = []

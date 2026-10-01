@@ -1,6 +1,6 @@
 """
 Unit tests for the astro_intelligence client.
-These mock HTTP responses — no live API key or network access required.
+These mock HTTP responses â€” no live API key or network access required.
 
 Run:
     pip install -e ".[dev]"
@@ -12,7 +12,7 @@ import responses
 
 from astro_intelligence import ASTRO, ASTROAuthError, ASTRORateLimitError
 
-BASE_URL = "https://astro-event-horizon.vercel.app/api/signal"
+BASE_URL = "https://astro-event-horizon.vercel.app"
 
 
 @pytest.fixture
@@ -20,7 +20,8 @@ def client():
     return ASTRO(api_key="test-key")
 
 
-def test_requires_api_key():
+def test_requires_api_key(monkeypatch):
+    monkeypatch.delenv("ASTRO_API_KEY", raising=False)
     with pytest.raises(ASTROAuthError):
         ASTRO(api_key=None)
 
@@ -29,7 +30,7 @@ def test_requires_api_key():
 def test_composite(client):
     responses.add(
         responses.GET,
-        f"{BASE_URL}/oracle/composite",
+        f"{BASE_URL}/api/signal",
         json={
             "composite": 53.18,
             "regime": "BEAR_ACCUMULATION",
@@ -50,14 +51,14 @@ def test_composite(client):
 def test_gate_open(client):
     responses.add(
         responses.GET,
-        f"{BASE_URL}/oracle/gate/BTC",
-        json={
+        f"{BASE_URL}/api/basket",
+        json={"basket": {"BTC": {
             "gate": "OPEN",
             "strategy": "CANDLE_REVERSAL",
             "confidence": 0.847,
             "ascendancy": 43.1,
             "velocity": 9.3,
-        },
+        }}},
         status=200,
     )
     gate = client.gate("btc")
@@ -70,7 +71,7 @@ def test_gate_open(client):
 def test_auth_error(client):
     responses.add(
         responses.GET,
-        f"{BASE_URL}/oracle/composite",
+        f"{BASE_URL}/api/signal",
         json={"error": "Invalid or expired API key."},
         status=401,
     )
@@ -82,7 +83,7 @@ def test_auth_error(client):
 def test_rate_limit_error(client):
     responses.add(
         responses.GET,
-        f"{BASE_URL}/oracle/composite",
+        f"{BASE_URL}/api/signal",
         json={"error": "Rate limit exceeded."},
         status=429,
         headers={"Retry-After": "120"},

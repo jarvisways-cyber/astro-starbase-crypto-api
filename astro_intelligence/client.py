@@ -1,123 +1,159 @@
+"""Client for the three supported hosted ASTRO resources."""
+import copy
 import os
 import time
 from typing import Dict, Optional
+from urllib.parse import urlsplit
 
 import requests
 
 from .exceptions import ASTROAuthError, ASTROError, ASTRORateLimitError
 from .models import AssetGate, AssetSnapshot, CompositeReading
 
-DEFAULT_BASE_URL = "https://astro-event-horizon.vercel.app/api/signal"
+DEFAULT_BASE_URL = "https://astro-event-horizon.vercel.app"
+POLL_INTERVAL = 900
 
 
 class ASTRO:
-    """
-    Client for the A.S.T.R.O. Oracle API.
+    """Header-authenticated hosted client with a per-resource 900-second cache.
 
-    Args:
-        api_key: Your A.S.T.R.O. API key. Falls back to the ASTRO_API_KEY
-            environment variable if not provided.
-        base_url: Override the API base URL (useful for local testing
-            against a mock server).
-        timeout: Request timeout in seconds. Default 10.
+    Cache timestamps are acquisition times, NOT proof of source freshness.
+    Reuse one instance across derived views. Separate processes share server
+    rate limits but not this cache. No expired data is returned on refresh error.
     """
 
-    def __init__(
-        self,
-        api_key: Optional[str] = None,
-        base_url: str = DEFAULT_BASE_URL,
-        timeout: int = 10,
-    ):
-        self.api_key = api_key or os.environ.get("ASTRO_API_KEY")
-        if not self.api_key:
-            raise ASTROAuthError(
-                "No API key provided. Pass api_key= or set ASTRO_API_KEY."
-            )
+    def __init__(self, api_key: Optional[str] = None,
+                 base_url: str = DEFAULT_BASE_URL, timeout: int = 20):
+        key = api_key or os.environ.get("ASTRO_API_KEY")
+        if not isinstance(key, str) or not key.strip():
+            raise ASTROAuthError("An API key is required.")
+        if any(ord(c) < 33 or ord(c) > 126 for c in key):
+            raise ASTROAuthError("API key contains invalid header characters.")
+        parsed = urlsplit(base_url)
+        if (parsed.scheme != "https" or not parsed.hostname or parsed.username
+                or parsed.password or parsed.query or parsed.fragment
+                or parsed.path not in ("", "/")):
+            raise ASTROError("base_url must be an HTTPS origin, without a path or credentials.")
+        if timeout <= 0:
+            raise ValueError("timeout must be positive")
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
         self._session = requests.Session()
-        self._session.headers.update({"X-API-Key": self.api_key})
+        self._session.headers.update({"X-API-Key": key})
+        self._cache = {}
 
-    # -- internal -------------------------------------------------------
-
-    def _get(self, path: str, params: Optional[Dict] = None) -> dict:
-        url = f"{self.base_url}{path}"
+    def _get(self, resource: str) -> dict:
+        cached = self._cache.get(resource)
+        if cached and time.monotonic() - cached[0] < POLL_INTERVAL:
+            return copy.deepcopy(cached[1])
         try:
-            resp = self._session.get(url, params=params, timeout=self.timeout)
-        except requests.RequestException as e:
-            raise ASTROError(f"Network error calling {path}: {e}") from e
-
-        if resp.status_code == 401:
-            raise ASTROAuthError("Invalid or expired API key.")
-        if resp.status_code == 429:
-            retry_after = resp.headers.get("Retry-After")
-            raise ASTRORateLimitError(
-                "Rate limit exceeded — 1 request per 15-minute oracle cycle.",
-                retry_after=int(retry_after) if retry_after else None,
+            response = self._session.get(
+                f"{self.base_url}/api/{resource}", timeout=self.timeout,
+                allow_redirects=False,
             )
-        if not resp.ok:
-            raise ASTROError(f"ASTRO API error {resp.status_code}: {resp.text}")
+        except requests.RequestException:
+            raise ASTROError("API network request failed; no cached fallback returned.") from None
+        try:
+            status = response.status_code
+            if status in (401, 403):
+                self._cache.clear()
+                raise ASTROAuthError("API access was rejected.")
+            if status == 429:
+                retry = response.headers.get("Retry-After", "")
+                try:
+                    delay = max(0, int(retry))
+                except (ValueError, TypeError):
+                    delay = POLL_INTERVAL
+                raise ASTRORateLimitError(
+                    "Resource rate limit reached; wait before retrying.", delay)
+            if status != 200:
+                raise ASTROError(f"API returned HTTP {status}; redirects are not followed.")
+            try:
+                data = response.json()
+            except ValueError:
+                raise ASTROError("API returned invalid JSON.") from None
+            if not isinstance(data, dict):
+                raise ASTROError("API response must be a JSON object.")
+            if resource == "basket" and (not isinstance(data.get("basket"), dict)
+                    or any(not isinstance(v, dict) for v in data["basket"].values())):
+                raise ASTROError("API basket must map symbols to objects.")
+            self._cache[resource] = (time.monotonic(), copy.deepcopy(data))
+            return data
+        finally:
+            response.close()
 
-        return resp.json()
+    def signal(self) -> dict:
+        """Raw signal, including additive fields and observation metadata."""
+        return self._get("signal")
 
-    # -- public endpoints -------------------------------------------------
-
-    def composite(self) -> CompositeReading:
-        """GET /oracle/composite — composite score, regime, top movers."""
-        data = self._get("/oracle/composite")
-        return CompositeReading.from_dict(data)
-
-    def signals(self) -> dict:
-        """GET /oracle/signals — full per-domain signal breakdown."""
-        return self._get("/oracle/signals")
-
-    def assets(self) -> Dict[str, AssetSnapshot]:
-        """GET /oracle/assets — per-asset ascendancy/velocity/gate snapshot."""
-        data = self._get("/oracle/assets")
-        return {sym: AssetSnapshot.from_dict(sym, v) for sym, v in data.items()}
-
-    def gate(self, symbol: str) -> AssetGate:
-        """GET /oracle/gate/:asset — full single-asset decision package."""
-        data = self._get(f"/oracle/gate/{symbol.upper()}")
-        return AssetGate.from_dict(symbol.upper(), data)
+    def context(self) -> dict:
+        """Raw component explanations, market rankings and auxiliary intelligence."""
+        return self._get("context")
 
     def basket(self) -> dict:
-        """GET /oracle/basket — full 10-asset scan in one call."""
-        return self._get("/oracle/basket")
+        """Raw basket envelope, including quotes, gates, quality and timestamps."""
+        return self._get("basket")
 
-    def congress(self) -> dict:
-        """GET /oracle/congress — congressional smart-money composite."""
-        return self._get("/oracle/congress")
+    def snapshot(self) -> dict:
+        """Fetch each resource once; sequential reads are not an atomic snapshot."""
+        return {"signal": self.signal(), "context": self.context(), "basket": self.basket()}
 
-    def history(self, limit: int = 100) -> dict:
-        """GET /oracle/history — historical oracle cycles with outcome tracking."""
-        return self._get("/oracle/history", params={"limit": limit})
+    def composite(self) -> CompositeReading:
+        return CompositeReading.from_dict(self.signal())
+
+    def signals(self) -> dict:
+        return self.signal().get("signals", {})
+
+    def assets(self) -> Dict[str, AssetSnapshot]:
+        return {symbol: AssetSnapshot.from_dict(symbol, value)
+                for symbol, value in self.basket()["basket"].items()}
+
+    def gate(self, symbol: str) -> AssetGate:
+        data = self.basket()
+        symbol = symbol.upper()
+        if symbol not in data["basket"]:
+            raise ASTROError("Asset is unavailable in the returned basket.")
+        value = dict(data["basket"][symbol])
+        value.setdefault("regime", data.get("regime"))
+        return AssetGate.from_dict(symbol, value)
 
     def prices(self) -> dict:
-        """GET /oracle/prices — live prices for all supported assets."""
-        return self._get("/oracle/prices")
-
-    def risk(self) -> dict:
-        """GET /oracle/risk — risk mode, kelly multiplier, max positions."""
-        return self._get("/oracle/risk")
+        """Prices only; use basket() for quote observation and stale flags."""
+        return {symbol: value.get("price") for symbol, value in self.basket()["basket"].items()}
 
     def regime(self) -> dict:
-        """GET /oracle/regime — regime context, confluence, 4h trend, shift."""
-        return self._get("/oracle/regime")
+        """Context view, not a request to an unexposed backend route."""
+        return self.context()
 
-    # -- convenience ------------------------------------------------------
+    def congress(self) -> dict:
+        raise ASTROError("Dedicated congress detail is not exposed by the hosted routes; use context().")
 
-    def wait_for_next_cycle(self, poll_seconds: int = 30, max_wait: int = 900) -> CompositeReading:
-        """
-        Poll until last_updated changes, useful for scripts that want to
-        react to each fresh oracle cycle rather than re-fetching stale data.
-        """
+    def history(self, limit: int = 100) -> dict:
+        raise ASTROError("History is not exposed through the documented hosted routes.")
+
+    def risk(self) -> dict:
+        raise ASTROError("Private execution risk is not exposed through the hosted routes.")
+
+    def wait_for_next_cycle(self, poll_seconds: int = POLL_INTERVAL,
+                            max_wait: int = POLL_INTERVAL) -> CompositeReading:
+        if poll_seconds < POLL_INTERVAL or max_wait < poll_seconds:
+            raise ValueError("Poll interval must be at least 900 seconds and fit max_wait.")
         baseline = self.composite()
         waited = 0
-        while waited < max_wait:
+        while waited + poll_seconds <= max_wait:
             time.sleep(poll_seconds)
             waited += poll_seconds
             reading = self.composite()
-            if reading.last_updated != baseline.last_updated:
+            if reading.last_updated and reading.last_updated != baseline.last_updated:
                 return reading
-        raise ASTROError("Timed out waiting for next oracle cycle.")
+        raise ASTROError("Timed out waiting for a new observation.")
+
+    def close(self):
+        self._cache.clear()
+        self._session.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()

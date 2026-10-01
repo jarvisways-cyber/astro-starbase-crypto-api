@@ -3,6 +3,17 @@
 All notable changes to the `astro_intelligence` client and public API spec will be documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.0] ? 2026-09-30 (source only; not published to PyPI)
+- SDK routes to `/api/signal`, `/api/context` and `/api/basket` on the website origin.
+- Shared per-resource 900-second cache for typed views; raw payloads retain quality
+  metadata and null observations. Expired refresh errors do not return old data.
+- Redirects disabled; sanitized errors, robust rate-limit handling and session cleanup.
+- Unexposed backend methods now report unsupported detail explicitly.
+- Core OpenAPI contract and examples aligned; Python 3.10 minimum declared.
+- Documented the optional one-time legacy paper-bot offer separately from API access.
+- 26 offline tests passed; source installation and dependency consistency verified.
+- No PyPI release, consumer ZIP replacement, billing or live-service change.
+
 ## [2026-09-30] ? VPS API documentation
 - Documented the verified hosted signal/context/basket routes, header authentication,
   per-resource polling, calculation explanations and data-quality limitations.
@@ -12,9 +23,9 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 - Existing alpha client and OpenAPI contract still need compatibility updates.
 
 ## [Unreleased]
-- Reconcile "9 signal domains" vs "11 signals" discrepancy between this README and the live access terminal copy.
+- Reconcile remaining legacy website marketing with the documented nine components plus auxiliary intelligence.
 - Publish formal SLA for cycle freshness / behavior when a request lands mid-cycle.
-- Add `/oracle/basket` and `/oracle/risk` response schemas to `openapi.yaml` once field shapes are confirmed against production.
+- Expand optional intelligence schemas from verified responses; do not advertise unexposed backend routes.
 
 ## [0.1.0] — 2026-06-29
 ### Added

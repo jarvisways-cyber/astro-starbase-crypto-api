@@ -4,19 +4,22 @@ from typing import Optional
 
 @dataclass
 class CompositeReading:
-    composite: float
+    composite: Optional[float]
     regime: str
-    btc_price: float
+    btc_price: Optional[float]
     signals: dict
     watching: list
     last_updated: str
 
+    raw: dict = field(default_factory=dict)
+
     @classmethod
     def from_dict(cls, data: dict) -> "CompositeReading":
         return cls(
-            composite=data["composite"],
-            regime=data["regime"],
-            btc_price=data["btc_price"],
+            raw=data.copy(),
+            composite=data.get("composite"),
+            regime=data.get("regime", "UNKNOWN"),
+            btc_price=data.get("btc_price"),
             signals=data.get("signals", {}),
             watching=data.get("watching", []),
             last_updated=data.get("last_updated", ""),
@@ -41,9 +44,12 @@ class AssetGate:
     dimension_scores: dict = field(default_factory=dict)
     position: Optional[dict] = None
 
+    raw: dict = field(default_factory=dict)
+
     @classmethod
     def from_dict(cls, symbol: str, data: dict) -> "AssetGate":
         return cls(
+            raw=data.copy(),
             symbol=symbol,
             gate=data.get("gate", "BLOCKED"),
             strategy=data.get("strategy"),
@@ -69,17 +75,20 @@ class AssetGate:
 @dataclass
 class AssetSnapshot:
     symbol: str
-    ascendancy: float
-    velocity: float
+    ascendancy: Optional[float]
+    velocity: Optional[float]
     sma200: Optional[float]
     gate: str
+
+    raw: dict = field(default_factory=dict)
 
     @classmethod
     def from_dict(cls, symbol: str, data: dict) -> "AssetSnapshot":
         return cls(
+            raw=data.copy(),
             symbol=symbol,
-            ascendancy=data.get("ascendancy", 0.0),
-            velocity=data.get("velocity", 0.0),
+            ascendancy=data.get("ascendancy"),
+            velocity=data.get("velocity"),
             sma200=data.get("sma200"),
             gate=data.get("gate", "BLOCKED"),
         )

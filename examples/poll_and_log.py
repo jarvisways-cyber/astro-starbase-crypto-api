@@ -4,18 +4,20 @@ reading to a local CSV — a minimal version of what ASTRO's own
 history-logging does internally, useful for your own auditing.
 
 Run:
-    ASTRO_API_KEY=your-key python examples/poll_and_log.py
+    python examples/poll_and_log.py
 """
 
 import csv
 import os
 import time
 
+from getpass import getpass
+
 from astro_intelligence import ASTRO, ASTROError
 
 OUTPUT_FILE = "astro_composite_log.csv"
 
-client = ASTRO()
+client = ASTRO(api_key=getpass("ASTRO API key: "))
 
 if not os.path.exists(OUTPUT_FILE):
     with open(OUTPUT_FILE, "w", newline="") as f:
@@ -37,4 +39,4 @@ while True:
     except ASTROError as e:
         print(f"error: {e}")
 
-    time.sleep(60)
+    time.sleep(900)

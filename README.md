@@ -1,4 +1,4 @@
-# A.S.T.R.O. — Crypto Intelligence API
+# A.S.T.R.O. Starbase ? Crypto Intelligence API
 
 **Asset Sentiment Trend Risk Oracle**
 
@@ -90,25 +90,46 @@ The internal bot remains **paper-only**. Module 8 evaluates candidate signal
 weights separately; it does **not automatically replace published weights**.
 Hive and broader autonomous strategy improvement remain development work.
 
+## Optional one-time consumer bot purchase
+
+Want a local ASTRO paper-trading client and another way to support the project?
+See the [Trade Bot page](https://astro-event-horizon.vercel.app/bot).
+The published offer includes three months of API access, then $9/month for
+continued data access. Owning the bot does not include a lifetime data feed.
+
+The last offered v3.1 package is paper-only and predates the reliability work.
+Read the [release limitations and purchase distinction](docs/CONSUMER_BOT.md)
+before treating it as a validated trading product. The API does not require it.
+
+## Source SDK 0.2.0
+
+The client in this repository now uses the three hosted routes. Install from a
+local checkout with `python -m pip install .`, then run an example that asks for
+your key in a masked prompt. This update has **not** been published to PyPI.
+
+`ASTRO.snapshot()` returns raw signal/context/basket responses. Typed helpers
+reuse a 900-second per-resource cache; they preserve missing scores as null.
+See [SDK behavior and migration](docs/SDK.md).
+
 ## About this repository
 
 This is ASTRO's **public crypto API hub**: current integration documentation,
-a runnable HTTP example, and the preserved alpha Python client and draft OpenAPI
+a runnable HTTP example, and the source Python client and core OpenAPI
 specification. The separate `astro-oracle` repository is the project archive,
 not the customer API hub. Mother production code and runtime state are not part
 of this documentation update.
 
-For new integrations, use [the API guide](docs/API.md) and
-[the snapshot example](examples/api_snapshot.py). The existing `astro_intelligence`
-alpha client and `openapi.yaml` predate the VPS contract and are **not yet reconciled
-with these hosted routes**. Their presence is not a claim of current compatibility.
+For new integrations, use [the API guide](docs/API.md), the
+[dependency-free snapshot example](examples/api_snapshot.py), or the updated
+[source SDK](docs/SDK.md). The [OpenAPI specification](openapi.yaml) documents
+the three hosted resources and permits additive intelligence fields.
 
 [Architecture and research lineage](docs/ARCHITECTURE.md) explains the wider
 project. The [previous Starbase overview](docs/HISTORICAL_OVERVIEW.md) preserves
 its original design discussion and historical research claims without presenting
 them as current performance evidence or deployment instructions.
 
-The existing [MIT license](LICENSE) is retained. No SDK package release is implied
-by this documentation update.
+The existing [MIT license](LICENSE) is retained. No PyPI publication or consumer ZIP replacement is implied
+by this source update.
 
 **[Explore ASTRO and get access](https://astro-event-horizon.vercel.app/)**

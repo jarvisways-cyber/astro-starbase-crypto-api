@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "astro-intelligence"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python client for the A.S.T.R.O. crypto market cognition oracle API"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "JARVIS", url = "https://github.com/jarvisways-cyber" }]
+authors = [{ name = "JARVIS" }]
 keywords = ["crypto", "trading", "market-data", "api-client", "oracle"]
 classifiers = [
     "Programming Language :: Python :: 3",
