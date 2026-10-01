@@ -18,7 +18,7 @@ export default function Bot() {
     <>
       <Head>
         <title>A.S.T.R.O. // TRADE BOT TERMINAL</title>
-        <meta name="description" content="A.S.T.R.O. — the autonomous trade bot, downloadable, yours forever." />
+        <meta name="description" content="A.S.T.R.O. — paper-trading beta and Founding Supporter offer, September 30, 2026 through September 29, 2027." />
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
       </Head>
       <style>{`
@@ -223,7 +223,7 @@ export default function Bot() {
         <div className="top-bar">
           <span>
             <span className="br">—[ </span><span className="g">SYS::DOWNLOADABLE</span>
-            <span className="br"> ]—[ </span><span className="g">ENGINE::AUTONOMOUS</span>
+            <span className="br"> ]—[ </span><span className="g">ENGINE::PAPER BETA</span>
             <span className="br"> ]—[ </span><span className="g">OWNERSHIP::PERMANENT</span>
             <span className="br"> ]—————————————————————</span>
           </span>
@@ -263,7 +263,7 @@ export default function Bot() {
         </div>
         <div className="section-header">— WHAT YOU'RE RUNNING ]—————————————————————————————————————</div>
         <div className="body-section">
-          <p>The full autonomous engine — <span className="em">Director</span>, <span className="em">Vanguard</span>, <span className="em">Shield</span>, <span className="em">Arbiter</span> — running locally on your machine, wired directly into the same Oracle signal feed that powers the API.</p>
+          <p>The paper-trading beta engine — <span className="em">Director</span>, <span className="em">Vanguard</span>, <span className="em">Shield</span>, <span className="em">Arbiter</span> — running locally on your machine, wired directly into the same Oracle signal feed that powers the API.</p>
           <p style={{ marginTop: "10px" }}>It doesn't watch charts. It reads regime, momentum, funding distortion, liquidity pressure, and eight other signal domains, then enters, sizes, and protects positions on its own.</p>
         </div>
 
@@ -292,21 +292,26 @@ export default function Bot() {
         <div className="section-header">— WHAT'S INCLUDED ]—————————————————————————————————————————</div>
         <div className="bullet-list">
           <div><span className="arrow">▶</span>Full trading engine — one-time purchase, no recurring license</div>
-          <div><span className="arrow">▶</span>Local installer, no terminal knowledge required</div>
-          <div><span className="arrow">▶</span>3 months A.S.T.R.O. Oracle API access, free</div>
+          <div><span className="arrow">▶</span>Windows launcher; Python 3.12+ required</div>
+          <div><span className="arrow">▶</span>Founding-year purchases: API access included while ASTRO operates the service</div>
           <div><span className="arrow">▶</span>1–10 aggression dial, set per session</div>
-          <div><span className="arrow">▶</span>Runs on your machine, your keys, your custody</div>
+          <div><span className="arrow">▶</span>Lifetime consumer-software updates; current execution is simulated only</div>
         </div>
 
-        <div className="section-header">— AFTER 3 MONTHS ]——————————————————————————————————————————</div>
+        <div className="section-header">— FOUNDING SUPPORTER YEAR ]——————————————————————————————————————————</div>
         <div className="body-section">
-          <p>API access continues at $9/month, cancel anytime. Your bot keeps running regardless — the engine is yours permanently.</p>
+          <p>Qualifying paid bot purchases from September 30, 2026 through September 29, 2027 (Alaska time) include API access without an additional subscription charge for as long as ASTRO operates the service, subject to published usage limits. The purchase window ending does not end your benefits.</p>
         </div>
 
         <div className="ps-line">
           <span className="path">PS C:\ASTRO&gt;</span> .\acquire.ps1 -price 365 -mode forever
         </div>
 
+        <div className="body-section">
+          <p>Your support funds continued development of ASTRO and Hive. Feedback, release testing and future Hive participation are opt-in. Live trading and broader exchange support remain future development goals, not current features or promised release dates.</p>
+          <p>One-time bot purchase; no automatic API subscription is created. Existing standalone API subscriptions are separate. Outside the founding window, the standard offer is three calendar months of API access, then a separate subscription if you choose to continue.</p>
+          <p><a href="/terms" style={{color: "#f5c518"}}>Read the Founding Supporter terms and API usage limits</a></p>
+        </div>
         <div className="cta-section">
           <div className="cta-label">
             <span>$365</span> · one time · yours forever

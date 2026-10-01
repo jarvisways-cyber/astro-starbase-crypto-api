@@ -94,8 +94,9 @@ Hive and broader autonomous strategy improvement remain development work.
 
 Want a local ASTRO paper-trading client and another way to support the project?
 See the [Trade Bot page](https://astro-event-horizon.vercel.app/bot).
-The published offer includes three months of API access, then $9/month for
-continued data access. Owning the bot does not include a lifetime data feed.
+Qualifying founding-year purchases include API access without another subscription
+charge while ASTRO operates the service, subject to published limits, plus lifetime
+consumer-software updates. See [cohort dates and terms](docs/FOUNDING_SUPPORTERS.md).
 
 The current v3.2 package is paper-only and includes the reliability improvements.
 Read the [release limitations and purchase distinction](docs/CONSUMER_BOT.md)

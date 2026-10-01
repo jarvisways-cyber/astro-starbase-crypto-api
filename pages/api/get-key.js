@@ -5,6 +5,8 @@ const redis = new Redis({
 });
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+  if (req.method !== 'GET') return res.status(405).json({error: 'Method not allowed'});
   const { session_id } = req.query;
   if (!session_id) return res.status(400).json({ error: "session_id required" });
   try {
@@ -18,6 +20,6 @@ export default async function handler(req, res) {
     }
     return res.status(404).json({ error: "Key not found. Payment may still be processing - try again in 30 seconds." });
   } catch (err) {
-    return res.status(500).json({ error: "Lookup failed", detail: String(err) });
+    return res.status(500).json({ error: "Lookup failed" });
   }
 }

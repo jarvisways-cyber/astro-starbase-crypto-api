@@ -39,14 +39,18 @@ No profitability or calibrated winning-probability claim is made.
 
 ## Purchase and API access
 
-The published offer, checked September 30, 2026, is a $365 one-time bot purchase
-with three months of API access, followed by $9/month for continued data access.
-Software ownership does not expire with the subscription, but fresh intelligence
-requires valid API access. Ownership does not include a lifetime data feed.
+The one-time bot price remains $365. Paid purchases in the founding year,
+September 30, 2026 through September 29, 2027 (Alaska time), include lifetime
+consumer-software updates and full API-plan access at no additional subscription
+charge for as long as ASTRO operates the service, subject to published usage limits.
+The purchase window ending does not end those benefits.
 
-Billing, checkout and email code were not changed by this release. A fresh
-purchase, included-access provisioning, expiry and renewal have **not** been
-end-to-end reverified. The inspected bot-checkout branch sends a download email
-but does not issue the included API key; any separate provisioning mechanism
-still needs verification. Artifact delivery and subscription fulfillment are
-distinct checks.
+See [Founding Supporter details](FOUNDING_SUPPORTERS.md) and the
+[terms](https://astro-event-horizon.vercel.app/terms). Outside that window, the
+standard included API period is three calendar months. The standalone API
+subscription remains separate. Existing subscriptions are not automatically canceled.
+
+Webhook fulfillment now issues the bot download and API key together, reusing the
+same key on retries. Automated fixture tests cover cohort boundaries, retries,
+revocation preservation and access export. No fresh real purchase or customer
+email was sent as part of those tests.
