@@ -3,6 +3,14 @@
 All notable changes to the `astro_intelligence` client and public API spec will be documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [2026-09-30] ? VPS API documentation
+- Documented the verified hosted signal/context/basket routes, header authentication,
+  per-resource polling, calculation explanations and data-quality limitations.
+- Added a dependency-free snapshot example with three offline regression tests.
+- Preserved the previous README as historical context; kept the alpha client,
+  draft schema, license, website, checkout and email implementation unchanged.
+- Existing alpha client and OpenAPI contract still need compatibility updates.
+
 ## [Unreleased]
 - Reconcile "9 signal domains" vs "11 signals" discrepancy between this README and the live access terminal copy.
 - Publish formal SLA for cycle freshness / behavior when a request lands mid-cycle.
