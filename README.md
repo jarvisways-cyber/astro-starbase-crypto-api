@@ -97,7 +97,7 @@ See the [Trade Bot page](https://astro-event-horizon.vercel.app/bot).
 The published offer includes three months of API access, then $9/month for
 continued data access. Owning the bot does not include a lifetime data feed.
 
-The last offered v3.1 package is paper-only and predates the reliability work.
+The current v3.2 package is paper-only and includes the reliability improvements.
 Read the [release limitations and purchase distinction](docs/CONSUMER_BOT.md)
 before treating it as a validated trading product. The API does not require it.
 
@@ -129,7 +129,8 @@ project. The [previous Starbase overview](docs/HISTORICAL_OVERVIEW.md) preserves
 its original design discussion and historical research claims without presenting
 them as current performance evidence or deployment instructions.
 
-The existing [MIT license](LICENSE) is retained. No PyPI publication or consumer ZIP replacement is implied
-by this source update.
+The existing [MIT license](LICENSE) is retained for this API repository. The SDK
+has not been published to PyPI. The separate paid consumer release is described
+in [consumer release notes](docs/CONSUMER_BOT.md).
 
 **[Explore ASTRO and get access](https://astro-event-horizon.vercel.app/)**
