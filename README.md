@@ -8,6 +8,17 @@ alerts, and trading systems. Use ASTRO's analysis without running its bot.
 **[Get API access — $9/month](https://astro-event-horizon.vercel.app/)** ·
 **[API guide](docs/API.md)** · **[Python example](examples/api_snapshot.py)**
 
+## MCP and free one-month trials
+
+Use the free [MCP connector](docs/MCP.md) to read all three public intelligence
+resources in a compatible AI client. Decision-support assessments are retained;
+private paper execution and account state are not exposed.
+
+[Activate a 30-day trial](https://astro-event-horizon.vercel.app/trial) through
+email verification. No card, automatic billing, or social engagement required.
+One trial per normalized email, including prior invited trials. Existing paid
+and Founding Supporter keys continue to work. Keep credentials out of AI chats.
+
 ## See the inputs behind the assessment
 
 ASTRO combines market inputs into regime assessments and asset-level scores.

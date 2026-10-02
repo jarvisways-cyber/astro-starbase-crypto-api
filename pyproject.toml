@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "astro-intelligence"
-version = "0.2.0"
+version = "0.3.0"
 description = "Python client for the A.S.T.R.O. crypto market cognition oracle API"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,6 +24,10 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "responses>=0.23"]
+mcp = ["mcp>=1.12,<2", "keyring>=25,<26"]
+
+[project.scripts]
+astro-mcp = "astro_intelligence.mcp_server:main"
 
 [project.urls]
 Homepage = "https://astro-event-horizon.vercel.app"
