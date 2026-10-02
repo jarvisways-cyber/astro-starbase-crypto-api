@@ -3,15 +3,17 @@ import argparse
 import getpass
 import sys
 import threading
+import time
 
 from .client import ASTRO
-from .exceptions import ASTROError
+from .exceptions import ASTROError, ASTROAuthError
+from .anonymous import load_trial, timestamp, TrialAccess
 
 TRIAL_URL = 'https://astro-event-horizon.vercel.app/trial'
 SERVICE = 'astro-intelligence-mcp'
 
 
-def build_server(client=None, key_loader=None):
+def build_server(client=None, key_loader=None, trial_loader=None, clock=time.time):
     from mcp.server.fastmcp import FastMCP
     from mcp.types import ToolAnnotations
     server = FastMCP('ASTRO Intelligence', instructions=(
@@ -21,32 +23,53 @@ def build_server(client=None, key_loader=None):
         'Use astro_get_started for out-of-band setup.'))
     lock = threading.Lock()
     holder = [client]
+    entitlement = [None]
+
+    def ended(status):
+        return {'status':status,'signup_url':TRIAL_URL,'instruction':'Open the signup link in your browser to continue. Configure your issued key locally with astro-mcp configure; never paste it in chat. No automatic billing.'}
 
     def read(resource):
         with lock:
+            if entitlement[0] and timestamp(entitlement[0]['expires_at'])<=clock():
+                return ended('trial_expired')
             if holder[0] is None:
                 try:
-                    key = key_loader() if key_loader else load_key()
+                    if key_loader:
+                        key=key_loader()
+                    else:
+                        record=trial_loader() if trial_loader else load_trial(secure_keyring())
+                        key=record['api_key']
+                        if record.get('expires_at'):entitlement[0]=record
                     if not key:
                         return {'status': 'setup_required', 'signup_url': TRIAL_URL,
                                 'instruction': 'Sign up in your browser, then run astro-mcp configure locally. Never send credentials to this tool.'}
                     holder[0] = ASTRO(api_key=key)
+                except TrialAccess as exc:
+                    return ended(exc.status)
                 except Exception:
                     return {'status': 'setup_required', 'instruction': 'Run astro-mcp configure locally with an OS credential store. Do not paste keys in chat.'}
             try:
-                return {'status': 'ok', 'resource': resource, 'cache_max_age_seconds': 900,
+                result={'status': 'ok', 'resource': resource, 'cache_max_age_seconds': 900,
                         'notice': 'May reuse the last response for 15 minutes. Inspect its observation timestamps and quality flags.',
                         'data': getattr(holder[0], resource)()}
+                if entitlement[0]:
+                    result['trial']={'expires_at':entitlement[0]['expires_at'],'signup_url':TRIAL_URL,'days_remaining':max(0,int((timestamp(entitlement[0]['expires_at'])-clock()+86399)//86400)),'automatic_billing':False}
+                return result
+            except ASTROAuthError:
+                if entitlement[0] and clock()-timestamp(entitlement[0]['issued_at'])<300:
+                    return {'status':'activating','retry_after_seconds':60,'message':'Your trial is issued; access synchronization is pending. Retry this tool in a minute.'}
+                return ended('access_rejected')
             except ASTROError:
                 return {'status': 'unavailable', 'message': 'ASTRO request failed or access was rejected. Check access and the polling interval; no expired fallback returned.'}
 
-    annotations = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True)
+    # Intelligence calls may create the first-use trial credential (never trades).
+    annotations = ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=True)
 
-    @server.tool(annotations=annotations)
+    @server.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True))
     def astro_get_started() -> dict:
         """Explain private signup and setup; does not create accounts or send emails."""
         return {'signup_url': TRIAL_URL, 'trial_days': 30, 'billing': 'No automatic charge or renewal',
-                'setup': 'Install the connector, verify email on the website, then run astro-mcp configure in a local terminal.',
+                'setup': 'Install and connect the connector. First intelligence use automatically activates a 30-day anonymous trial, subject to capacity, using your native OS credential store. May take a minute to synchronize. Email signup is optional until access ends.',
                 'privacy': 'Never paste verification codes or API keys into this conversation.',
                 'existing_customers': 'Use your existing API key; no new trial is needed.'}
 

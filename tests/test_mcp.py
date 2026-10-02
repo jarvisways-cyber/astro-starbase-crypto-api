@@ -17,7 +17,8 @@ def test_only_read_only_tools_and_no_secret_inputs():
     tools = run(build_server(client=Client()).list_tools())
     assert {t.name for t in tools} == {'astro_get_started','astro_signal','astro_context','astro_basket'}
     for t in tools:
-        assert t.annotations.readOnlyHint
+        assert not t.annotations.destructiveHint
+        assert t.annotations.readOnlyHint == (t.name=='astro_get_started')
         assert not t.inputSchema.get('properties')
 
 def test_missing_key_only_gives_private_setup_instructions():
@@ -39,7 +40,7 @@ def test_private_auth_error_is_not_returned():
             raise ASTROAuthError('fixture-private-never-return')
     result = run(build_server(client=Failed()).call_tool('astro_signal', {}))
     assert 'fixture-private-never-return' not in str(result)
-    assert 'unavailable' in str(result)
+    assert 'access_rejected' in str(result)
 
 def test_real_stdio_protocol_handshake_and_tool_roundtrip():
     import sys

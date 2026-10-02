@@ -146,3 +146,7 @@ has not been published to PyPI. The separate paid consumer release is described
 in [consumer release notes](docs/CONSUMER_BOT.md).
 
 **[Explore ASTRO and get access](https://astro-event-horizon.vercel.app/)**
+
+
+### Anonymous MCP pilot (0.4.0)
+Install from [ASTRO MCP](https://astro-event-horizon.vercel.app/mcp). First intelligence use activates 30 consecutive days without email/card, subject to network and pilot caps. A native OS credential store is required. At expiry, signup is prompted; no automatic billing. Existing keys take precedence when configured. See [MCP details](docs/MCP.md).

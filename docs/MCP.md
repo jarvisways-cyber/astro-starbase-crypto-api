@@ -1,52 +1,28 @@
-# ASTRO MCP connector
+# ASTRO MCP 0.4.0 — try first, register later
 
-Free, read-only connector; live data requires an ASTRO key. The connector does
-not place orders, enroll users in billing, send email, or accept keys in tools.
-All fields from the three public API resources are retained, including strategy
-assessments, gates, confidence, vetoes and explanations. These are analytical
-outputs, not trade execution. No private account, order or position endpoint is exposed.
+ASTRO is a local stdio connector, not a hosted HTTP MCP endpoint. It exposes the complete public signal, context and basket responses, including decision-support gates and explanations. No trading execution, private positions, balances or orders are exposed.
 
-## Private setup
+## Install and connect
 
-1. Existing customers use their existing key. New users visit
-   https://astro-event-horizon.vercel.app/trial in a browser, enter an email and
-   use case, and verify the email there. Never give the AI the verification code.
-2. Install this repository's Python package with the `mcp` extra in an isolated
-   environment (`python -m pip install '.[mcp]'` from this checkout).
-   This release is not yet published to PyPI.
-3. Run `astro-mcp configure` in your own terminal. It prompts with masked input
-   and saves the key in Windows Credential Manager, macOS Keychain, or Linux
-   Secret Service. Plaintext fallback stores are rejected. Never put a key in
-   a command argument, MCP JSON, or chat.
-4. Configure your MCP-capable client to launch the installed `astro-mcp`
-   executable with argument `serve`, using stdio. Use its absolute executable
-   path if the client cannot find your isolated environment. No secret env
-   values are needed. Restart the client after changing the saved key.
+Download https://astro-event-horizon.vercel.app/downloads/astro-intelligence-mcp-0.4.0.zip and extract. Python 3.10+ required. In the extracted directory:
 
-Example client configuration (replace only the executable path):
-
-```json
-{"mcpServers":{"astro":{"command":"/absolute/path/to/astro-mcp","args":["serve"]}}}
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install ".[mcp]"
 ```
 
-Tools: `astro_get_started`, `astro_signal`, `astro_context`, `astro_basket`.
-All tools have no arguments. Setup returns only a public signup URL and
-instructions; it does not collect credentials in the assistant conversation.
+On macOS/Linux use `python3 -m venv .venv` then `.venv/bin/python -m pip install '.[mcp]'`.
 
-## Trial and data limits
+In your MCP client, set command to the absolute installed `astro-mcp` executable and args to `["serve"]`. Do not put a key in the client configuration. Windows Credential Manager, macOS Keychain or Linux Secret Service is required; plaintext fallback is deliberately unavailable.
 
-30 days from verified activation, not first API call. One trial per normalized
-email, including previously invited trials. No automatic renewal or billing.
-Founders keep their qualifying entitlement. Expiry/revocation propagation can
-take up to five minutes. Multiple email addresses are not proof of distinct
-people; email verification is not complete abuse prevention.
+First use of astro_signal, astro_context or astro_basket automatically activates a 30-day anonymous trial. A random installation recovery credential and API key are stored in the native credential store. No email/card/engagement is required. Use initiates the trial under https://astro-event-horizon.vercel.app/terms and /privacy. Initialization, tool listing and astro_get_started do not activate it. Intelligence tools are marked nondestructive but not readOnlyHint because first use provisions a credential.
 
-The SDK reuses each resource for up to 900 seconds to respect the server limit.
-Reuse one running connector: separate processes share the server-side key limit
-but not the in-memory cache. Source observations can be older than acquisition;
-always inspect timestamps and missing/stale flags. No expired cached fallback
-is returned on a failed refresh. Reads across endpoints are not atomic.
+The deadline is fixed at activation, not 30 active days. Reconnection reuses it. Responses include the expiry date and days remaining, never the key. At expiry the connector returns a signup URL, not cached intelligence. It makes no payment. Follow https://astro-event-horizon.vercel.app/trial and then run `astro-mcp configure` in a local interactive terminal with the issued key; restart the connector. Tool names/integration stay unchanged, but the key changes. Never share keys/codes with the AI.
 
-This is a local stdio connector, not a hosted OAuth MCP endpoint. Directory
-listing, auto-discovery, every-editor compatibility, and future publication are
-not implied. No exchange credentials or live trading are supported.
+Existing customers should run `astro-mcp configure` before their first request. A configured key takes precedence over anonymous access. Anonymous recovery cannot revive a revoked/deleted key. Verified-email trials retain their separate eligibility policy, so an anonymous user may also qualify for that trial after verification.
+
+Pilot controls: 3 fresh grants per network over 30 days, 25/day globally, 250 total; 60 activation requests/network/hour. These are installation/network limits, not verified people. Shared networks can hit limits. Deleting credentials, different networks, or multiple mailboxes can circumvent some controls. No hardware fingerprinting. Signup remains an alternative at capacity. Capacity denial does not disable already-issued keys.
+
+New access usually takes about a minute to synchronize and can take five; an activating result requests a retry. Standard polling is one request/resource/key/900 seconds. The connector reuses responses within that interval; inspect source timestamps, nulls, stale flags and source limitations. Scores are not calibrated winning probabilities.
+
+Tools: astro_get_started (public instructions), astro_signal, astro_context, astro_basket. Installing does not automatically list ASTRO in directories or install it in other AI clients. This source package is not a PyPI publication.
