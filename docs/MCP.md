@@ -1,10 +1,14 @@
-# ASTRO MCP 0.4.0 — try first, register later
+# ASTRO MCP 0.5.0 — try first, register later
 
 ASTRO is a local stdio connector, not a hosted HTTP MCP endpoint. It exposes the complete public signal, context and basket responses, including decision-support gates and explanations. No trading execution, private positions, balances or orders are exposed.
 
+## Direct data migration
+
+Version 0.5.0 fetches signal, context and basket from https://64.227.50.56 using normal HTTPS certificate validation. Signup, trial activation, terms and checkout remain at the existing website during migration. Existing native credential-store entries and trial deadlines are reused; reinstalling is not a new trial. There is no automatic fallback to the old tunnel. The Python SDK still permits an explicit HTTPS base_url override. This remains a local stdio MCP connector, not a remote HTTP MCP server.
+
 ## Install and connect
 
-Download https://astro-event-horizon.vercel.app/downloads/astro-intelligence-mcp-0.4.0.zip and extract. Python 3.10+ required. In the extracted directory:
+Download https://64.227.50.56/downloads/astro-intelligence-mcp-0.5.0.zip and extract. Version 0.4.0 remains available at the original website for rollback. Python 3.10+ required. In the extracted directory:
 
 ```powershell
 python -m venv .venv
