@@ -5,7 +5,7 @@
 Explainable crypto market intelligence for dashboards, screeners, research,
 alerts, and trading systems. Use ASTRO's analysis without running its bot.
 
-**[Get API access — $9/month](https://astro-event-horizon.vercel.app/)** ·
+**[Get API access — $9/month](https://64.227.50.56/)** ·
 **[API guide](docs/API.md)** · **[Python example](examples/api_snapshot.py)**
 
 ## MCP and free one-month trials
@@ -14,7 +14,7 @@ Use the free [MCP connector](docs/MCP.md) to read all three public intelligence
 resources in a compatible AI client. Decision-support assessments are retained;
 private paper execution and account state are not exposed.
 
-[Activate a 30-day trial](https://astro-event-horizon.vercel.app/trial) through
+[Activate a 30-day trial](https://64.227.50.56/trial) through
 email verification. No card, automatic billing, or social engagement required.
 One trial per normalized email, including prior invited trials. Existing paid
 and Founding Supporter keys continue to work. Keep credentials out of AI chats.
@@ -40,7 +40,12 @@ Its API exposes the components behind those assessments—not just a final numbe
 
 ## Hosted API
 
-Use **`https://astro-event-horizon.vercel.app`**, not an old tunnel address.
+Use **`https://64.227.50.56`**, ASTRO's primary HTTPS address.
+
+MCP 0.6.0 uses this VPS for both trial activation and intelligence. The previous
+Vercel address remains available temporarily for compatibility and rollback;
+new integrations should use the primary address. This is the same ASTRO service,
+not a separate plan. Existing keys and trial deadlines remain unchanged.
 
 | Route | Response |
 |---|---|
@@ -104,7 +109,7 @@ Hive and broader autonomous strategy improvement remain development work.
 ## Optional one-time consumer bot purchase
 
 Want a local ASTRO paper-trading client and another way to support the project?
-See the [Trade Bot page](https://astro-event-horizon.vercel.app/bot).
+See the [Trade Bot page](https://64.227.50.56/bot).
 Qualifying founding-year purchases include API access without another subscription
 charge while ASTRO operates the service, subject to published limits, plus lifetime
 consumer-software updates. See [cohort dates and terms](docs/FOUNDING_SUPPORTERS.md).
@@ -145,8 +150,8 @@ The existing [MIT license](LICENSE) is retained for this API repository. The SDK
 has not been published to PyPI. The separate paid consumer release is described
 in [consumer release notes](docs/CONSUMER_BOT.md).
 
-**[Explore ASTRO and get access](https://astro-event-horizon.vercel.app/)**
+**[Explore ASTRO and get access](https://64.227.50.56/)**
 
 
 ### Anonymous MCP pilot (0.4.0)
-Install from [ASTRO MCP](https://astro-event-horizon.vercel.app/mcp). First intelligence use activates 30 consecutive days without email/card, subject to network and pilot caps. A native OS credential store is required. At expiry, signup is prompted; no automatic billing. Existing keys take precedence when configured. See [MCP details](docs/MCP.md).
+Install from [ASTRO MCP](https://64.227.50.56/mcp). First intelligence use activates 30 consecutive days without email/card, subject to network and pilot caps. A native OS credential store is required. At expiry, signup is prompted; no automatic billing. Existing keys take precedence when configured. See [MCP details](docs/MCP.md).

@@ -3,7 +3,7 @@ import pytest
 import responses
 from astro_intelligence import ASTRO, ASTROError, ASTROAuthError, ASTRORateLimitError
 
-BASE = "https://astro-event-horizon.vercel.app"
+BASE = "https://64.227.50.56"
 
 @responses.activate
 def test_one_resource_cycle_and_derived_views():

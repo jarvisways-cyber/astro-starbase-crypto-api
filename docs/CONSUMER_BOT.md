@@ -1,6 +1,6 @@
 # Optional consumer bot / project support
 
-The [ASTRO Trade Bot](https://astro-event-horizon.vercel.app/bot) is a separate
+The [ASTRO Trade Bot](https://64.227.50.56/bot) is a separate
 one-time software purchase. Buying it is **not required** to use the API.
 
 ## Current release: 3.2.0-paper
@@ -46,7 +46,7 @@ charge for as long as ASTRO operates the service, subject to published usage lim
 The purchase window ending does not end those benefits.
 
 See [Founding Supporter details](FOUNDING_SUPPORTERS.md) and the
-[terms](https://astro-event-horizon.vercel.app/terms). Outside that window, the
+[terms](https://64.227.50.56/terms). Outside that window, the
 standard included API period is three calendar months. The standalone API
 subscription remains separate. Existing subscriptions are not automatically canceled.
 

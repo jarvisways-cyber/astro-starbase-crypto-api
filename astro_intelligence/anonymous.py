@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 import requests
 
-ORIGIN='https://astro-event-horizon.vercel.app'
+ORIGIN='https://64.227.50.56'
 SERVICE='astro-intelligence-mcp'
 
 def timestamp(value):

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "astro-intelligence"
-version = "0.4.0"
+version = "0.6.0"
 description = "Python client for the A.S.T.R.O. crypto market cognition oracle API"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -30,7 +30,7 @@ mcp = ["mcp>=1.12,<2", "keyring>=25,<26"]
 astro-mcp = "astro_intelligence.mcp_server:main"
 
 [project.urls]
-Homepage = "https://astro-event-horizon.vercel.app"
+Homepage = "https://64.227.50.56"
 Repository = "https://github.com/jarvisways-cyber/astro-starbase-crypto-api"
 Issues = "https://github.com/jarvisways-cyber/astro-starbase-crypto-api/issues"
 

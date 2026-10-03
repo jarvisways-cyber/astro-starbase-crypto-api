@@ -10,7 +10,7 @@ import requests
 from .exceptions import ASTROAuthError, ASTROError, ASTRORateLimitError
 from .models import AssetGate, AssetSnapshot, CompositeReading
 
-DEFAULT_BASE_URL = "https://astro-event-horizon.vercel.app"
+DEFAULT_BASE_URL = "https://64.227.50.56"
 POLL_INTERVAL = 900
 
 

@@ -9,7 +9,7 @@ from .client import ASTRO
 from .exceptions import ASTROError, ASTROAuthError
 from .anonymous import load_trial, timestamp, TrialAccess
 
-TRIAL_URL = 'https://astro-event-horizon.vercel.app/trial'
+TRIAL_URL = 'https://64.227.50.56/trial'
 SERVICE = 'astro-intelligence-mcp'
 
 

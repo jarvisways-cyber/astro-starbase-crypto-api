@@ -4,7 +4,7 @@ import json
 import urllib.error
 import urllib.request
 
-BASE = 'https://astro-event-horizon.vercel.app'
+BASE = 'https://64.227.50.56'
 ROUTES = ('signal', 'context', 'basket')
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):

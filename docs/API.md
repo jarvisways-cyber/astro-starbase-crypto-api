@@ -1,7 +1,7 @@
 # ASTRO hosted API guide
 
 Contract documented September 30, 2026. Base URL:
-`https://astro-event-horizon.vercel.app`
+`https://64.227.50.56`
 
 ## Access and polling
 

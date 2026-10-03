@@ -25,5 +25,5 @@ expiry does not end the API entitlement or software ownership.
 Outside the founding window, the standard included API period is three calendar
 months. Continued access then requires a separately chosen subscription.
 
-[Purchase and service terms](https://astro-event-horizon.vercel.app/terms) ·
-[Trade Bot](https://astro-event-horizon.vercel.app/bot)
+[Purchase and service terms](https://64.227.50.56/terms) ·
+[Trade Bot](https://64.227.50.56/bot)
