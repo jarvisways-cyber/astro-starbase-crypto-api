@@ -23,11 +23,12 @@ class ASTRO:
     """
 
     def __init__(self, api_key: Optional[str] = None,
-                 base_url: str = DEFAULT_BASE_URL, timeout: int = 20):
-        key = api_key or os.environ.get("ASTRO_API_KEY")
-        if not isinstance(key, str) or not key.strip():
+                 base_url: str = DEFAULT_BASE_URL, timeout: int = 20,
+                 public_access: bool = False):
+        key = None if public_access else (api_key or os.environ.get("ASTRO_API_KEY"))
+        if not public_access and (not isinstance(key, str) or not key.strip()):
             raise ASTROAuthError("An API key is required.")
-        if any(ord(c) < 33 or ord(c) > 126 for c in key):
+        if key is not None and any(ord(c) < 33 or ord(c) > 126 for c in key):
             raise ASTROAuthError("API key contains invalid header characters.")
         parsed = urlsplit(base_url)
         if (parsed.scheme != "https" or not parsed.hostname or parsed.username
@@ -39,7 +40,9 @@ class ASTRO:
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
         self._session = requests.Session()
-        self._session.headers.update({"X-API-Key": key})
+        self.public_access = public_access
+        if key is not None:
+            self._session.headers.update({"X-API-Key": key})
         self._cache = {}
 
     def _get(self, resource: str) -> dict:
@@ -48,7 +51,7 @@ class ASTRO:
             return copy.deepcopy(cached[1])
         try:
             response = self._session.get(
-                f"{self.base_url}/api/{resource}", timeout=self.timeout,
+                f"{self.base_url}/api/{'public/' if self.public_access else ''}{resource}", timeout=self.timeout,
                 allow_redirects=False,
             )
         except requests.RequestException:

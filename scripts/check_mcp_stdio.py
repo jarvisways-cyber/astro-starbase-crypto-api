@@ -20,7 +20,7 @@ async def main():
             assert {tool.name for tool in tools.tools} == expected
             result = await session.call_tool('astro_get_started', {})
             assert not result.isError
-            assert 'https://64.227.50.56/trial' in str(result)
+            assert 'signup_required' in str(result)
             print('PASS: real stdio initialization, four tools, and setup call.')
             print('No intelligence calls, trial activation, credentials, or email required.')
 

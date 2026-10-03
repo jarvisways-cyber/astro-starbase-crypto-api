@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "astro-intelligence"
-version = "0.6.0"
+version = "0.7.0"
 description = "Python/stdio MCP server and SDK for ASTRO hosted crypto intelligence"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "responses>=0.23"]
-mcp = ["mcp>=1.12,<2", "keyring>=25,<26"]
+mcp = ["mcp>=1.12,<2"]
 
 [project.scripts]
 astro-mcp = "astro_intelligence.mcp_server:main"

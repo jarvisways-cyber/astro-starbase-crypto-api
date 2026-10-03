@@ -2,13 +2,11 @@ import responses
 import pytest
 from astro_intelligence.client import ASTRO, DEFAULT_BASE_URL
 from astro_intelligence.anonymous import ORIGIN,SERVICE
-from astro_intelligence.mcp_server import TRIAL_URL
 from astro_intelligence.exceptions import ASTROError
 
 def test_data_origin_moves_without_resetting_account_identity():
     assert DEFAULT_BASE_URL=='https://64.227.50.56'
     assert ORIGIN=='https://64.227.50.56'
-    assert TRIAL_URL==ORIGIN+'/trial'
     assert SERVICE=='astro-intelligence-mcp'
 
 @responses.activate

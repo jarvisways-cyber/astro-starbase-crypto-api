@@ -2,7 +2,7 @@
 
 **This repository contains the runnable Python/stdio MCP server implementation**, not just an API specification or client example. The server runs locally in an MCP-compatible client and retrieves intelligence from ASTRO's hosted HTTPS API.
 
-## MCP server 0.6.0: source and tools
+## MCP server 0.7.0: source and tools
 
 - [Server implementation and all four tool definitions](astro_intelligence/mcp_server.py)
 - [HTTP transport, response handling, and polling cache](astro_intelligence/client.py)
@@ -47,9 +47,9 @@ The check starts a real stdio subprocess, initializes MCP, lists all four tools,
 
 Configure your AI client's MCP server with the absolute path to `.venv/Scripts/astro-mcp.exe` on Windows or `.venv/bin/astro-mcp` on macOS/Linux, and arguments `["serve"]`. The transport is **stdio**, not HTTP. [Full client setup and access behavior](docs/MCP.md).
 
-First intelligence use activates a fixed 30-day anonymous trial, subject to pilot limits. No email or card is required for this path. Windows Credential Manager, macOS Keychain, or an unlocked Linux Secret Service is required for private credential persistence; headless containers without one can initialize/list tools but cannot automatically activate a trial. No plaintext fallback is used.
+MCP 0.7.0 provides the complete public intelligence responses without signup, API keys, trial activation, payment details, or a credential store. It works in headless containers as well as desktop clients. Call any intelligence tool immediately after connecting. Existing saved credentials and account records are untouched.
 
-Existing users may run `astro-mcp configure` locally to save their key using a hidden prompt. At expiry the connector returns a signup link; there is no automatic charge. [Optional email-verified signup](https://64.227.50.56/trial) remains available. Reinstalling does not reset a saved trial.
+Run `python scripts/check_mcp_live.py` in the installed environment to test all three tools against the live public service. This test supplies no credentials and requires all ten assets in the basket. It creates no account and sends no email.
 
 ## Local MCP server versus hosted backend
 
@@ -86,7 +86,7 @@ Its API exposes the components behind those assessments—not just a final numbe
 
 Use **`https://64.227.50.56`**, ASTRO's primary HTTPS address.
 
-MCP 0.6.0 uses this VPS for both trial activation and intelligence. The previous
+MCP 0.7.0 uses this VPS for credential-free intelligence. The previous
 Vercel address remains available temporarily for compatibility and rollback;
 new integrations should use the primary address. This is the same ASTRO service,
 not a separate plan. Existing keys and trial deadlines remain unchanged.
@@ -162,7 +162,7 @@ The current v3.2 package is paper-only and includes the reliability improvements
 Read the [release limitations and purchase distinction](docs/CONSUMER_BOT.md)
 before treating it as a validated trading product. The API does not require it.
 
-## Source SDK 0.6.0
+## Source SDK 0.7.0
 
 The client in this repository now uses the three hosted routes. Install from a
 local checkout with `python -m pip install .`, then run an example that asks for
@@ -193,5 +193,5 @@ in [consumer release notes](docs/CONSUMER_BOT.md).
 **[Explore ASTRO and get access](https://64.227.50.56/)**
 
 
-### Anonymous MCP pilot (0.6.0)
-Install from [ASTRO MCP](https://64.227.50.56/mcp). First intelligence use activates 30 consecutive days without email/card, subject to network and pilot caps. A native OS credential store is required. At expiry, signup is prompted; no automatic billing. Existing keys take precedence when configured. See [MCP details](docs/MCP.md).
+### Public MCP access (0.7.0)
+The current connector uses public intelligence routes, with no signup or trial. Versions 0.6.0 and earlier used anonymous trial activation; upgrade to 0.7.0 for credential-free access. The server may reuse calculations for up to 30 seconds; the connector caches each resource for up to 15 minutes. Source timestamps and stale/missing flags remain unchanged. Availability and service capacity limits apply; no unlimited-uptime promise is made.
