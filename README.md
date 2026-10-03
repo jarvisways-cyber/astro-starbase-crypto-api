@@ -1,23 +1,67 @@
-# A.S.T.R.O. Starbase ? Crypto Intelligence API
+# ASTRO MCP Server and Crypto Intelligence API
 
-**Asset Sentiment Trend Risk Oracle**
+**This repository contains the runnable Python/stdio MCP server implementation**, not just an API specification or client example. The server runs locally in an MCP-compatible client and retrieves intelligence from ASTRO's hosted HTTPS API.
 
-Explainable crypto market intelligence for dashboards, screeners, research,
-alerts, and trading systems. Use ASTRO's analysis without running its bot.
+## MCP server 0.6.0: source and tools
 
-**[Get API access — $9/month](https://64.227.50.56/)** ·
-**[API guide](docs/API.md)** · **[Python example](examples/api_snapshot.py)**
+- [Server implementation and all four tool definitions](astro_intelligence/mcp_server.py)
+- [HTTP transport, response handling, and polling cache](astro_intelligence/client.py)
+- [First-use trial activation and recovery](astro_intelligence/anonymous.py)
+- [Dependencies and `astro-mcp` executable entry point](pyproject.toml)
+- [MCP protocol and behavior tests](tests/test_mcp.py)
 
-## MCP and free one-month trials
+| MCP tool | Function |
+|---|---|
+| `astro_get_started` | Setup instructions; no account creation or external request |
+| `astro_signal` | Composite, market regime, component summary, and source metadata |
+| `astro_context` | Component explanations and available prediction-market, macro, sentiment, and liquidity context |
+| `astro_basket` | Ten-asset analysis including funding, volatility, rankings, strategy assessments, and freshness indicators |
 
-Use the free [MCP connector](docs/MCP.md) to read all three public intelligence
-resources in a compatible AI client. Decision-support assessments are retained;
-private paper execution and account state are not exposed.
+The tools expose intelligence and decision support, **not trade execution, private positions, or account balances**. Missing or stale inputs remain visible; scores are not calibrated winning probabilities.
 
-[Activate a 30-day trial](https://64.227.50.56/trial) through
-email verification. No card, automatic billing, or social engagement required.
-One trial per normalized email, including prior invited trials. Existing paid
-and Founding Supporter keys continue to work. Keep credentials out of AI chats.
+## Install the MCP server from this repository
+
+Python 3.10+ is required. No PyPI publication is implied by these commands.
+
+```sh
+git clone https://github.com/jarvisways-cyber/astro-starbase-crypto-api.git
+cd astro-starbase-crypto-api
+python -m venv .venv
+```
+
+Windows:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install ".[mcp]"
+.\.venv\Scripts\python.exe scripts/check_mcp_stdio.py
+```
+
+macOS/Linux (use `python3` above if needed):
+
+```sh
+.venv/bin/python -m pip install '.[mcp]'
+.venv/bin/python scripts/check_mcp_stdio.py
+```
+
+The check starts a real stdio subprocess, initializes MCP, lists all four tools, and calls setup guidance. **It does not activate a trial or require a key.**
+
+Configure your AI client's MCP server with the absolute path to `.venv/Scripts/astro-mcp.exe` on Windows or `.venv/bin/astro-mcp` on macOS/Linux, and arguments `["serve"]`. The transport is **stdio**, not HTTP. [Full client setup and access behavior](docs/MCP.md).
+
+First intelligence use activates a fixed 30-day anonymous trial, subject to pilot limits. No email or card is required for this path. Windows Credential Manager, macOS Keychain, or an unlocked Linux Secret Service is required for private credential persistence; headless containers without one can initialize/list tools but cannot automatically activate a trial. No plaintext fallback is used.
+
+Existing users may run `astro-mcp configure` locally to save their key using a hidden prompt. At expiry the connector returns a signup link; there is no automatic charge. [Optional email-verified signup](https://64.227.50.56/trial) remains available. Reinstalling does not reset a saved trial.
+
+## Local MCP server versus hosted backend
+
+```text
+AI client <--- MCP stdio ---> this repository's Python server
+                                      |
+                                      +--- HTTPS ---> ASTRO intelligence/account API
+```
+
+All MCP protocol handling, tool definitions, local caching, trial recovery, and credential-store integration are present in this repository. The market collector and private paper-execution engine run separately on the VPS and are not required to install or inspect this MCP server. This connector requires the hosted service for live intelligence; it does not collect market data independently.
+
+**https://64.227.50.56/mcp is a setup webpage, not a remote MCP protocol endpoint.** The same repository also includes the website, API integration documentation, and Python SDK described below.
 
 ## See the inputs behind the assessment
 
@@ -118,7 +162,7 @@ The current v3.2 package is paper-only and includes the reliability improvements
 Read the [release limitations and purchase distinction](docs/CONSUMER_BOT.md)
 before treating it as a validated trading product. The API does not require it.
 
-## Source SDK 0.2.0
+## Source SDK 0.6.0
 
 The client in this repository now uses the three hosted routes. Install from a
 local checkout with `python -m pip install .`, then run an example that asks for
@@ -130,11 +174,7 @@ See [SDK behavior and migration](docs/SDK.md).
 
 ## About this repository
 
-This is ASTRO's **public crypto API hub**: current integration documentation,
-a runnable HTTP example, and the source Python client and core OpenAPI
-specification. The separate `astro-oracle` repository is the project archive,
-not the customer API hub. Mother production code and runtime state are not part
-of this documentation update.
+This repository contains ASTRO's **MCP server implementation**, Python SDK, website, integration documentation, and OpenAPI specification. The separate `astro-oracle` repository is a project archive. The private hosted collector and paper-execution runtime are separate from the MCP server source linked above.
 
 For new integrations, use [the API guide](docs/API.md), the
 [dependency-free snapshot example](examples/api_snapshot.py), or the updated
@@ -153,5 +193,5 @@ in [consumer release notes](docs/CONSUMER_BOT.md).
 **[Explore ASTRO and get access](https://64.227.50.56/)**
 
 
-### Anonymous MCP pilot (0.4.0)
+### Anonymous MCP pilot (0.6.0)
 Install from [ASTRO MCP](https://64.227.50.56/mcp). First intelligence use activates 30 consecutive days without email/card, subject to network and pilot caps. A native OS credential store is required. At expiry, signup is prompted; no automatic billing. Existing keys take precedence when configured. See [MCP details](docs/MCP.md).

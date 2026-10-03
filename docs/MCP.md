@@ -1,5 +1,13 @@
 # ASTRO MCP 0.6.0 — try first, register later
 
+## Review and run the implementation
+
+The MCP server is implemented in [`astro_intelligence/mcp_server.py`](../astro_intelligence/mcp_server.py), including the `FastMCP` instance, four tool definitions, and stdio startup. [`anonymous.py`](../astro_intelligence/anonymous.py) implements first-use activation; [`client.py`](../astro_intelligence/client.py) implements HTTPS requests and caching. These files are in this repository, not an external private runtime.
+
+To install from GitHub, clone this repository and follow the [root README's source installation steps](../README.md#install-the-mcp-server-from-this-repository). After installing `.[mcp]`, run `python scripts/check_mcp_stdio.py` using that environment's Python. This checks real MCP initialization, tool discovery, and setup guidance without using the hosted API or starting a trial.
+
+The hosted market-data collector is a separate service. A headless environment without native credential storage can inspect and initialize this MCP server, but cannot perform anonymous activation. This is not a hosted HTTP MCP endpoint or a standalone offline market-data engine.
+
 ASTRO is a local stdio connector, not a hosted HTTP MCP endpoint. It exposes the complete public signal, context and basket responses, including decision-support gates and explanations. No trading execution, private positions, balances or orders are exposed.
 
 ## Direct data migration
