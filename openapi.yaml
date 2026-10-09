@@ -2,12 +2,12 @@
   "openapi": "3.0.3",
   "info": {
     "title": "ASTRO hosted crypto intelligence API",
-    "version": "0.2.0",
-    "description": "Core shape of the three hosted routes, not a closed enumeration of all additive intelligence fields. See docs/API.md. Scores are not calibrated profit probabilities."
+    "version": "0.7.1",
+    "description": "Core response shapes for public and authenticated ASTRO intelligence routes. Public routes need no signup, API key or trial activation. Additional intelligence fields may be present. Scores are not calibrated profit probabilities. No trade execution."
   },
   "servers": [
     {
-      "url": "https://astro-event-horizon.vercel.app"
+      "url": "https://64.227.50.56"
     }
   ],
   "security": [
@@ -113,6 +113,114 @@
             "description": "Service or authorization snapshot unavailable"
           }
         }
+      }
+    },
+    "/api/public/signal": {
+      "get": {
+        "operationId": "getPublicSignal",
+        "description": "Public read-only intelligence; no signup or API key required. Same intelligence response shape as the authenticated route. Inspect timestamps and missing/stale flags. Capacity limits apply; respect Retry-After on HTTP 429.",
+        "responses": {
+          "200": {
+            "description": "Intelligence response; missing values may be null. Additional fields are retained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Signal"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Service capacity temporarily limited",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay before retrying, in seconds when supplied.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable"
+          },
+          "503": {
+            "description": "Intelligence service unavailable"
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/public/context": {
+      "get": {
+        "operationId": "getPublicContext",
+        "description": "Public read-only intelligence; no signup or API key required. Same intelligence response shape as the authenticated route. Inspect timestamps and missing/stale flags. Capacity limits apply; respect Retry-After on HTTP 429.",
+        "responses": {
+          "200": {
+            "description": "Intelligence response; missing values may be null. Additional fields are retained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Context"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Service capacity temporarily limited",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay before retrying, in seconds when supplied.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable"
+          },
+          "503": {
+            "description": "Intelligence service unavailable"
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/public/basket": {
+      "get": {
+        "operationId": "getPublicBasket",
+        "description": "Public read-only intelligence; no signup or API key required. Same intelligence response shape as the authenticated route. Inspect timestamps and missing/stale flags. Capacity limits apply; respect Retry-After on HTTP 429.",
+        "responses": {
+          "200": {
+            "description": "Intelligence response; missing values may be null. Additional fields are retained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Basket"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Service capacity temporarily limited",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay before retrying, in seconds when supplied.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable"
+          },
+          "503": {
+            "description": "Intelligence service unavailable"
+          }
+        },
+        "security": []
       }
     }
   },

@@ -1,10 +1,10 @@
-# ASTRO MCP 0.7.0 — public intelligence
+# ASTRO MCP 0.7.1 — public intelligence
 
 No signup, API key, payment, trial, or OS credential store is required. The four tools run over local stdio; the intelligence backend runs on ASTRO's VPS. This also supports headless MCP containers.
 
 ## Install
 
-Python 3.10+ required. Clone this repository or extract the 0.7.0 ZIP. Create a virtual environment and install `.[mcp]`:
+Python 3.10+ required. Clone this repository or extract the 0.7.1 ZIP. Create a virtual environment and install `.[mcp]`:
 
 ```sh
 python -m venv .venv
@@ -24,6 +24,6 @@ Public routes are `https://64.227.50.56/api/public/signal`, `/api/public/context
 
 ## Upgrade
 
-0.6.0 and earlier required trial credentials; 0.7.0 does not. Install in a new folder/environment and update your client command. No need to delete saved credentials. Existing paid API keys and account entitlements remain untouched. `astro-mcp configure` now explains that no key is required. Legacy trial/account functionality is not invoked by this connector.
+0.6.0 and earlier required trial credentials; 0.7.1 does not. Install in a new folder/environment and update your client command. No need to delete saved credentials. Existing paid API keys and account entitlements remain untouched. `astro-mcp configure` now explains that no key is required. Legacy trial/account functionality is not invoked by this connector.
 
 The setup website is not a remote MCP protocol endpoint. Glama builds this stdio server in its own container. Passing startup alone is insufficient: run the live MCP check there before release.

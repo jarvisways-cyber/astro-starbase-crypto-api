@@ -12,12 +12,12 @@ import responses
 
 from astro_intelligence import ASTRO, ASTROAuthError, ASTRORateLimitError
 
-BASE_URL = "https://astro-event-horizon.vercel.app"
+BASE_URL = "https://api.example.test"
 
 
 @pytest.fixture
 def client():
-    return ASTRO(api_key="test-key")
+    return ASTRO(api_key="test-key", base_url=BASE_URL)
 
 
 def test_requires_api_key(monkeypatch):

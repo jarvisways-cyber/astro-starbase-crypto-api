@@ -1,19 +1,26 @@
 # ASTRO hosted API guide
 
-Contract documented September 30, 2026. Base URL:
+Public and authenticated routes, reviewed October 9, 2026. Base URL:
 `https://64.227.50.56`
 
 ## Access and polling
 
-The advertised customer plan is **$9/month for full ASTRO API access**.
-Obtain access through the website. Send an `X-API-Key` header; no query-string
-credential is needed. Keep keys out of browser-delivered code.
+Public intelligence is available without signup, an API key or trial activation:
+`GET /api/public/signal`, `GET /api/public/context`, `GET /api/public/basket`.
+The MCP connector uses these routes. They expose the same intelligence response
+shapes as the authenticated routes; access labels may differ. No trade execution
+or private customer records are exposed. Service availability and capacity
+limits apply. Respect `Retry-After` when a request returns HTTP 429.
+
+Existing authenticated integrations may continue to use `X-API-Key` with the
+routes below. No query-string credential is needed. Keep keys out of
+browser-delivered code. A paid key is not required to use the public MCP tools.
 
 Supported website routes documented here: `/api/signal`, `/api/context`, and
 `/api/basket`. Old `/oracle/*` examples describe backend paths; do not append
 them to this website origin or use obsolete tunnel URLs.
 
-Each resource allows **one request per 900 seconds per key**. Fetch all three
+Authenticated resources allow **one request per 900 seconds per key**. Fetch all three
 once per cycle and cache them. Context does not consume the signal or basket
 allowance. Do not rapidly retry a rate-limited request.
 

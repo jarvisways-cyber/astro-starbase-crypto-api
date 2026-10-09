@@ -52,6 +52,8 @@ def test_real_stdio_protocol_handshake_and_tool_roundtrip():
             async with ClientSession(read,write) as session:
                 init=await session.initialize()
                 assert init.serverInfo.name=='ASTRO Intelligence'
+                from astro_intelligence import __version__
+                assert init.serverInfo.version == __version__
                 listed=await session.list_tools()
                 assert len(listed.tools)==4
                 result=await session.call_tool('astro_get_started',{})

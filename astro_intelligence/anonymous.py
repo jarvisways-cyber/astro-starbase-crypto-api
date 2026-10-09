@@ -1,4 +1,9 @@
-"""Private first-use activation. No hardware fingerprint, key in tool output, or redirects."""
+"""Legacy <=0.6 trial activation compatibility; unused by the public MCP server.
+
+Preserved for older callers. Current public intelligence does not invoke this
+module, create trials, or require credential storage. Do not use this module
+as the current onboarding implementation.
+"""
 import json
 import secrets
 import time

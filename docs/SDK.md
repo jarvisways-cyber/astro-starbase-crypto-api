@@ -1,9 +1,22 @@
-# Python SDK 0.2.0 (source release)
+# Python SDK 0.7.1 (source release)
 
-Install a checkout with `python -m pip install .` (Python 3.10+). Version 0.2.0
-has not been published to PyPI; `pip install astro-intelligence` may fetch an older
-release. Use the local masked prompts in `examples/quickstart.py` or
-`examples/scan_open_gates.py`. Do not paste credentials into source or commands.
+Install this checkout with `python -m pip install .` (Python 3.10+).
+This source release is not published to PyPI; install the checkout rather than assuming a same-named registry package is current.
+
+## Public access
+
+No signup or API key is required for public intelligence:
+
+```python
+from astro_intelligence import ASTRO
+
+with ASTRO(public_access=True) as client:
+    snapshot = client.snapshot()
+```
+
+Public mode uses `/api/public/signal`, `/api/public/context`, and `/api/public/basket`.
+The default keyed mode is retained for compatibility and uses the authenticated routes below.
+Do not paste credentials into source, commands, or URLs. Both modes preserve freshness and missing-data indicators; neither executes trades.
 
 ## Routes and views
 
@@ -48,6 +61,4 @@ automatically. Use a context manager or `close()` to release its session.
 - `wait_for_next_cycle()` requires at least 900 seconds between polls.
 - The core OpenAPI document replaces the earlier unverified backend-route draft.
 
-Verification uses mocked hosted responses and offline tests; no new live-key
-SDK cycle or PyPI release is claimed. Existing live HTTP route checks are
-separate deployment evidence.
+Verification includes offline regression tests and credential-free live MCP calls. No new authenticated-key SDK cycle or PyPI release is claimed.

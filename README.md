@@ -2,11 +2,11 @@
 
 **This repository contains the runnable Python/stdio MCP server implementation**, not just an API specification or client example. The server runs locally in an MCP-compatible client and retrieves intelligence from ASTRO's hosted HTTPS API.
 
-## MCP server 0.7.0: source and tools
+## MCP server 0.7.1: source and tools
 
 - [Server implementation and all four tool definitions](astro_intelligence/mcp_server.py)
 - [HTTP transport, response handling, and polling cache](astro_intelligence/client.py)
-- [First-use trial activation and recovery](astro_intelligence/anonymous.py)
+- [Legacy trial compatibility (not used by current MCP)](astro_intelligence/anonymous.py)
 - [Dependencies and `astro-mcp` executable entry point](pyproject.toml)
 - [MCP protocol and behavior tests](tests/test_mcp.py)
 
@@ -47,7 +47,7 @@ The check starts a real stdio subprocess, initializes MCP, lists all four tools,
 
 Configure your AI client's MCP server with the absolute path to `.venv/Scripts/astro-mcp.exe` on Windows or `.venv/bin/astro-mcp` on macOS/Linux, and arguments `["serve"]`. The transport is **stdio**, not HTTP. [Full client setup and access behavior](docs/MCP.md).
 
-MCP 0.7.0 provides the complete public intelligence responses without signup, API keys, trial activation, payment details, or a credential store. It works in headless containers as well as desktop clients. Call any intelligence tool immediately after connecting. Existing saved credentials and account records are untouched.
+MCP 0.7.1 provides the complete public intelligence responses without signup, API keys, trial activation, payment details, or a credential store. It works in headless containers as well as desktop clients. Call any intelligence tool immediately after connecting. Existing saved credentials and account records are untouched.
 
 Run `python scripts/check_mcp_live.py` in the installed environment to test all three tools against the live public service. This test supplies no credentials and requires all ten assets in the basket. It creates no account and sends no email.
 
@@ -66,7 +66,7 @@ All MCP protocol handling, tool definitions, local caching, trial recovery, and 
 ## See the inputs behind the assessment
 
 ASTRO combines market inputs into regime assessments and asset-level scores.
-Its API exposes the components behind those assessments—not just a final number.
+Its API exposes the components behind those assessmentsâ€”not just a final number.
 
 - **Nine weighted composite components:** fear/greed, market structure, funding,
   liquidity, macro, on-chain, options, narrative, and congressional-activity scores.
@@ -78,15 +78,15 @@ Its API exposes the components behind those assessments—not just a final numbe
   interest, stablecoin supply, macro prediction-market context, SMA, ATR, and
   candle-pattern details where available.
 - **Decision context:** per-asset scores, strategy assessments, dimension checks,
-  and veto reasons—not executed customer orders.
+  and veto reasonsâ€”not executed customer orders.
 
-**Supported assets:** BTC · ETH · SOL · ADA · DOGE · ARB · OP · LINK · POL · DOT
+**Supported assets:** BTC Â· ETH Â· SOL Â· ADA Â· DOGE Â· ARB Â· OP Â· LINK Â· POL Â· DOT
 
 ## Hosted API
 
 Use **`https://64.227.50.56`**, ASTRO's primary HTTPS address.
 
-MCP 0.7.0 uses this VPS for credential-free intelligence. The previous
+MCP 0.7.1 uses this VPS for credential-free intelligence. The previous
 Vercel address remains available temporarily for compatibility and rollback;
 new integrations should use the primary address. This is the same ASTRO service,
 not a separate plan. Existing keys and trial deadlines remain unchanged.
@@ -116,7 +116,7 @@ The example asks for your key in a **local masked prompt**, fetches all three
 routes and prints a market summary. It never places trades or saves your key.
 See the [API guide](docs/API.md) for fields, status handling and interpretation.
 
-## VPS deployment milestone — September 30, 2026
+## VPS deployment milestone â€” September 30, 2026
 
 The backend now runs on a VPS rather than a laptop connection. Collection, API
 delivery, customer-key synchronization and internal paper execution are separate
@@ -162,11 +162,11 @@ The current v3.2 package is paper-only and includes the reliability improvements
 Read the [release limitations and purchase distinction](docs/CONSUMER_BOT.md)
 before treating it as a validated trading product. The API does not require it.
 
-## Source SDK 0.7.0
+## Source SDK 0.7.1
 
 The client in this repository now uses the three hosted routes. Install from a
-local checkout with `python -m pip install .`, then run an example that asks for
-your key in a masked prompt. This update has **not** been published to PyPI.
+local checkout with `python -m pip install .`, then use `ASTRO(public_access=True)`
+for credential-free intelligence. Keyed mode remains available for compatibility. This update has **not** been published to PyPI.
 
 `ASTRO.snapshot()` returns raw signal/context/basket responses. Typed helpers
 reuse a 900-second per-resource cache; they preserve missing scores as null.
@@ -174,10 +174,10 @@ See [SDK behavior and migration](docs/SDK.md).
 
 ## About this repository
 
-This repository contains ASTRO's **MCP server implementation**, Python SDK, website, integration documentation, and OpenAPI specification. The separate `astro-oracle` repository is a project archive. The private hosted collector and paper-execution runtime are separate from the MCP server source linked above.
+This repository contains ASTRO's **MCP server implementation**, Python SDK, integration documentation, and OpenAPI specification. The full repository also contains website source; this connector archive does not include the website. The separate `astro-oracle` repository is a project archive. The private hosted collector and paper-execution runtime are separate from the MCP server source linked above.
 
 For new integrations, use [the API guide](docs/API.md), the
-[dependency-free snapshot example](examples/api_snapshot.py), or the updated
+[dependency-free snapshot example](https://github.com/jarvisways-cyber/astro-starbase-crypto-api/blob/main/examples/api_snapshot.py), or the updated
 [source SDK](docs/SDK.md). The [OpenAPI specification](openapi.yaml) documents
 the three hosted resources and permits additive intelligence fields.
 
@@ -193,5 +193,5 @@ in [consumer release notes](docs/CONSUMER_BOT.md).
 **[Explore ASTRO and get access](https://64.227.50.56/)**
 
 
-### Public MCP access (0.7.0)
-The current connector uses public intelligence routes, with no signup or trial. Versions 0.6.0 and earlier used anonymous trial activation; upgrade to 0.7.0 for credential-free access. The server may reuse calculations for up to 30 seconds; the connector caches each resource for up to 15 minutes. Source timestamps and stale/missing flags remain unchanged. Availability and service capacity limits apply; no unlimited-uptime promise is made.
+### Public MCP access (0.7.1)
+The current connector uses public intelligence routes, with no signup or trial. Versions 0.6.0 and earlier used anonymous trial activation; upgrade to 0.7.1 for credential-free access. The server may reuse calculations for up to 30 seconds; the connector caches each resource for up to 15 minutes. Source timestamps and stale/missing flags remain unchanged. Availability and service capacity limits apply; no unlimited-uptime promise is made.
