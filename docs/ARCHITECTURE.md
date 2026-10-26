@@ -7,12 +7,12 @@ API from experimental trading behavior. The original page remains in Git history
 ## Current customer path
 
 ```text
-Market sources -> Mother collection -> recorded intelligence -> authenticated API
+Market sources -> Mother collection -> versioned committed cycles -> public API / MCP
                                                                |
                                            dashboards, research, alerts, bots
 ```
 
-The original website handles purchases, key issuance and email delivery. The
+Public intelligence requires no signup or key. The separate account website handles purchases, key issuance and email delivery for legacy authenticated paths. The
 customer registry synchronizes access to Mother. Customers consume JSON; they do
 not need ASTRO's execution engine. See [API documentation](API.md).
 
@@ -58,3 +58,19 @@ strategy service remains a development goal, not a current product promise.
 
 For current integration instructions and dated deployment checks, use the
 [main guide](../README.md), rather than legacy SDK examples or tunnel addresses.
+
+## Forward learning boundary (October 25, 2026)
+
+Module 8's separate shadow trial registers fixed models, records paired
+predictions before outcomes, and joins matured observations from committed
+cycles. Missed predictions are not backfilled. Earlier recording gaps and
+overlapping outcome windows must remain visible in evaluation.
+
+The learner requires compatible signal/component definitions and explicit
+input-quality evidence; the optimization gate remains 2,000 eligible rows.
+Forecast counts are not training-row counts. No learned weights have been
+promoted. The initial trial compares default weights with equal weights for
+the nine-component base, not the entire adjusted trading policy or net P&L.
+
+Private runtime source, ledgers, raw disclosures, credentials, and research
+databases do not belong in this public connector repository.
