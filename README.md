@@ -82,55 +82,56 @@ Its API exposes the components behind those assessmentsâ€”not just a final 
 
 **Supported assets:** BTC Â· ETH Â· SOL Â· ADA Â· DOGE Â· ARB Â· OP Â· LINK Â· POL Â· DOT
 
-## Hosted API
+## Hosted API: start without credentials
 
-Use **`https://64.227.50.56`**, ASTRO's primary HTTPS address.
-
-MCP 0.7.1 uses this VPS for credential-free intelligence. The previous
-Vercel address remains available temporarily for compatibility and rollback;
-new integrations should use the primary address. This is the same ASTRO service,
-not a separate plan. Existing keys and trial deadlines remain unchanged.
+Public intelligence is free to access right now, without signup or an ASTRO API
+key. Use **`https://64.227.50.56`**, the primary HTTPS address.
 
 | Route | Response |
 |---|---|
-| `GET /api/signal` | Published composite, regime, component summary, BTC quote and observation metadata |
-| `GET /api/context` | Weighted explanations, adjustment trace, rankings/breadth and supporting intelligence |
-| `GET /api/basket` | Ten-asset scan: prices, score velocity, SMA, funding, ATR, strategy assessments and explanations |
-
-Authenticate with the **`X-API-Key` header**. Keep your key server-side, out of
-URLs, public frontends, repositories and screenshots.
-
-**Polling: one request per resource per key every 15 minutes.** Fetch signal,
-context and basket once each in the same cycle, then cache them. This is an
-intelligence service, not a tick-by-tick streaming product.
-
-### Try a complete data cycle
-
-Python 3.10+; no third-party packages needed:
+| `GET /api/public/signal` | Composite, regime, component summary and observation metadata |
+| `GET /api/public/context` | Explanations, prediction-market context and supporting intelligence |
+| `GET /api/public/basket` | Ten-asset scores, funding, volatility, strategy assessments and freshness |
 
 ```sh
-python examples/api_snapshot.py
+python examples/public_snapshot.py
 ```
 
-The example asks for your key in a **local masked prompt**, fetches all three
-routes and prints a market summary. It never places trades or saves your key.
-See the [API guide](docs/API.md) for fields, status handling and interpretation.
+This dependency-free example reads each resource once, needs no credentials,
+and places no trades. Cache responses between collection cycles (about fifteen
+minutes); do not treat cached responses as newly observed data. Check missingness,
+stale flags and source timestamps before use. Capacity limits still apply.
 
-## VPS deployment milestone â€” September 30, 2026
+Existing authenticated `/api/signal`, `/api/context`, and `/api/basket` routes
+remain separate compatibility paths. Their keys and account entitlements are not
+needed for public access. See the [API guide](docs/API.md).
 
-The backend now runs on a VPS rather than a laptop connection. Collection, API
-delivery, customer-key synchronization and internal paper execution are separate
-supervised services.
+## Try it in your workflow
 
-Verified at deployment:
+- [Live Signal Explorer](https://64.227.50.56/explore/)
+- [Connect your own rig](https://64.227.50.56/explore/#your-rig)
+- [Download the n8n starter](https://64.227.50.56/explore/astro-n8n-market-brief.json)
+- [n8n setup instructions](https://64.227.50.56/explore/astro-n8n-setup.txt)
+- [MCP setup](https://64.227.50.56/mcp) (webpage, not a remote MCP endpoint)
 
-- One customer key fetched all three public routes successfully.
-- Missing/invalid keys were rejected; all ten assets had quote data.
-- Component contributions reconciled to the base score.
-- Collection continued after the paper worker stopped.
-- API restart preserved history; release and state rollback checkpoints were saved.
+The n8n starter fetches data, validates observation freshness, and produces a
+market brief and structured rows. It was verified in n8n 2.43.7, including
+stale-data rejection. It is manual and read-only: attach your own destination or
+schedule. It does not send notifications or execute trades by itself.
 
-This dated verification is **not an uptime SLA or profitability claim**.
+## Hosted runtime checkpoint — October 25, 2026
+
+The private hosted engine now uses versioned, committed signal cycles. The
+integrity rollout corrected contract interpretation, source-unit handling, and
+missing/stale-data paths while preserving the original signal architecture.
+Prediction-market translation and congressional activity remain part of ASTRO.
+
+Module 8 records forward shadow comparisons; active weights remain the defaults.
+Shadow outcomes are research evidence, not demonstrated trading profit or an
+automatic promotion mechanism. These backend changes do not imply a new MCP
+package version: the connector remains 0.7.1.
+
+This is a dated implementation checkpoint, not an uptime or performance guarantee.
 
 ## Interpret the intelligence correctly
 
