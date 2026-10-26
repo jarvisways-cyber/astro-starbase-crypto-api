@@ -8,10 +8,12 @@ This is a review checkpoint, not a deployment announcement.
 - Onboarding documents public HTTP access, Explorer, and the n8n starter.
 - Homepage copy is proposed on the review branch, not deployed: it removes
   trial/payment requirements for public intelligence and qualifies score claims.
-- Homepage JSX transformed successfully using an existing Next 16.2.9 toolchain.
-  A full build against this repository's locked Next 16.3.8 dependencies remains
-  unverified: dependency installation stalled before completing. No dependencies
-  were downgraded to make the check pass. Browser layout checks remain outstanding.
+- Clean offline dependency installation and the production build passed against
+  the locked Next 16.3.8 packages. Downloaded Next/SWC archives matched the lockfile's
+  SHA-512 integrity values; no dependencies were downgraded. Local preview starts,
+  but browser navigation was blocked by the test tool's policy. Rendered desktop
+  and mobile layout checks remain outstanding. No production credentials were
+  loaded; authenticated backend and payment flows were not exercised.
 
 ## Consumer distribution
 
