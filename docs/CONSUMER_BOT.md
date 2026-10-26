@@ -39,6 +39,21 @@ No profitability or calibrated winning-probability claim is made.
 
 ## Purchase and API access
 
+### Compatibility review — October 25, 2026
+
+The downloaded 3.2.0-paper ZIP still matches the SHA-256 above and its internal
+file manifest. Its offline self-check passed with networking blocked, and its
+response mapper accepted a fresh ten-asset public API capture. This tests the
+mapping only, not the package's authenticated polling or an end-to-end trading run.
+
+It is **not fully aligned with every current missing-data response**. In isolated
+mapper checks, an explicitly unavailable nested open-interest score became the
+legacy neutral value 50, while a null regime score raised a validation error.
+The existing polling error path marks data unavailable, but that does not repair
+the neutral-value substitution. A separately tested consumer update is required.
+The ZIP has not been replaced, and it does not contain the newer hosted engine
+or Module 8 changes. Do not infer consumer compatibility from VPS deployment status.
+
 The one-time bot price remains $365. Paid purchases in the founding year,
 September 30, 2026 through September 29, 2027 (Alaska time), include lifetime
 consumer-software updates and full API-plan access at no additional subscription

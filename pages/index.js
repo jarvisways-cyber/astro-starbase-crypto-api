@@ -274,9 +274,9 @@ export default function Home() {
         </div>
         <div className="top-bar">
           <span>
-            <span className="br">â€”[ </span><span className="g">SYS::ONLINE</span>
-            <span className="br"> ]â€”[ </span><span className="g">GATE::ARMED</span>
-            <span className="br"> ]â€”[ </span><span className="g">ORACLE::ACTIVE</span>
+            <span className="br">â€”[ </span><span className="g">PUBLIC::API</span>
+            <span className="br"> ]â€”[ </span><span className="g">PAPER::ONLY</span>
+            <span className="br"> ]â€”[ </span><span className="g">MCP::STDIO</span>
             <span className="br"> ]â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”</span>
           </span>
           <span><span className="br">[ </span><span className="g">v4:20</span><span className="br"> ]â€”</span></span>
@@ -317,20 +317,20 @@ export default function Home() {
         <div className="mission-row">
           <span className="arr-enter">â–¶</span>
           <span className="kw-enter">ENTER</span>
-          <span className="br">[ </span><span className="muted">top-3 momentum</span><span className="br"> ]â€”â€”[ </span>
-          <span className="muted">kelly-sized positions</span><span className="br"> ]</span>
+          <span className="br">[ </span><span className="muted">asset assessments</span><span className="br"> ]â€”â€”[ </span>
+          <span className="muted">decision support</span><span className="br"> ]</span>
         </div>
         <div className="mission-row">
           <span className="arr-protect">â–¶</span>
           <span className="kw-protect">PROTECT</span>
-          <span className="br">[ </span><span className="kw-r">hard stop -12%</span><span className="br"> ]â€”â€”[ </span>
-          <span className="kw-g">trailing floor +8%</span><span className="br"> ]</span>
+          <span className="br">[ </span><span className="kw-r">source timestamps</span><span className="br"> ]â€”â€”[ </span>
+          <span className="kw-g">missing-data flags</span><span className="br"> ]</span>
         </div>
         <div className="mission-row">
           <span className="arr-capture">â–¶</span>
           <span className="kw-capture">CAPTURE</span>
-          <span className="br">[ </span><span className="kw-y">target +25%</span><span className="br"> ]â€”â€”[ </span>
-          <span className="muted">never fight the trend</span><span className="br"> ]</span>
+          <span className="br">[ </span><span className="kw-y">component explanations</span><span className="br"> ]â€”â€”[ </span>
+          <span className="muted">paper research, not promised returns</span><span className="br"> ]</span>
         </div>
 
         <div className="event-key-section">
@@ -351,61 +351,45 @@ export default function Home() {
         </div>
 
         <div className="bottom-bar">
-          <span>Log: orchestrator.log</span>
-          <span><span className="live-dot">â— </span><span className="live-time">LIVE {time}</span></span>
-          <span>Ctrl+C to exit Â· streaming...</span>
+          <span>ASTRO intelligence access</span>
+          <span><span className="live-dot">â— </span><span className="live-time">LOCAL {time}</span></span>
+          <span>Source freshness is reported per response Â· streaming...</span>
         </div>
 
         <div className="about-section">
-          <p><span className="em">A.S.T.R.O.</span> is not a signal service. It is a financial cognition engine designed to translate the world's fragmented market data into a unified probability framework for digital assets.</p>
-          <p>At its core is a proprietary multi-dimensional oracle architecture that continuously ingests and interprets live global market intelligence across nine independent signal domains:</p>
-          <ul>
-            <li>Fear &amp; Greed Regimes</li>
-            <li>Market Structure Dynamics</li>
-            <li>Funding Rate Distortions</li>
-            <li>Liquidity Pressure Mapping</li>
-            <li>Macro Correlation Networks</li>
-            <li>On-Chain Capital Flows</li>
-            <li>Derivatives &amp; Options Positioning</li>
-            <li>Narrative and Sentiment Velocity</li>
-            <li>Congressional Insider Activity &amp; Smart Capital Monitoring</li>
-            <li>Prediction Market Intelligence &amp; Collective Foresight Signals</li>
-            <li>1-Minute Candle Pattern Recognition &amp; Momentum Detection</li>
-          </ul>
-          <p>Each layer is processed through an intellectual reaction stack that models how institutional algorithms, market makers, liquidity providers, retail participants, and autonomous trading systems are likely to respond under current conditions.</p>
-          <p>Rather than measuring what the market is doing, <span className="em">A.S.T.R.O.</span> measures what the market is likely to do next.</p>
-          <p>The engine synthesizes millions of data points into a single <span className="gr">Asset Gate Status</span> â€” a continuously evolving probability score that identifies whether capital conditions favor accumulation, expansion, distribution, or contraction for any supported asset.</p>
-          <p>Bitcoin. Ethereum. Solana. Equities. Macro proxies. Any market where behavior leaves a measurable footprint.</p>
-          <p>The result is a machine-readable translation layer between raw market complexity and actionable intelligence.</p>
-          <p>No charts to interpret.<br />No indicators to configure.<br />No noise.</p>
-          <p>Three API resources, each available every fifteen minutes, deliver a strategic assessment generated by the <span className="em">A.S.T.R.O. Oracle Engine</span>.</p>
-          <p>For traders, funds, quantitative systems, and autonomous agents seeking an informational edge, <span className="em">A.S.T.R.O.</span> functions as a market operating system â€” decoding the collective behavior of global capital in real time.</p>
-          <p style={{textAlign: "center", color: "#888"}}>Not a signal.<br />A translation of the market itself.</p>
+          <p><span className="em">A.S.T.R.O.</span> translates prediction-market contracts, congressional disclosures, and market data into explained crypto-market assessments.</p>
+          <p>Nine weighted components cover fear and greed, market structure, funding, liquidity, macro, on-chain activity, options, narrative, and congressional activity. Prediction-market interpretation and candle evidence provide additional context.</p>
+          <p>Explore component contributions, event deadlines, asset assessments, and source-quality indicators. Scores and strategy confidence are heuristics, not calibrated probabilities of a profitable trade.</p>
+          <p>Supported assets: BTC, ETH, SOL, ADA, DOGE, ARB, OP, LINK, POL, and DOT.</p>
+          <p>Use the signal, context, and basket resources in your dashboard, market brief, bot, or AI workflow. These endpoints provide decision support; they do not execute customer trades.</p>
+          <p>Module 8 is evaluating models in a forward shadow trial. Learned weights are not automatically promoted, and an adaptive trading advantage has not yet been demonstrated.</p>
         </div>
 
         <div className="dev-section">
-          <div className="dev-header">â€” FOR DEVELOPERS ]</div>
-          <div className="dev-subtext">Integrate <span>A.S.T.R.O.</span> intelligence directly into your trading system, bot, or algorithm.</div>
-
+          <div className="dev-header">FOR DEVELOPERS</div>
+          <div className="dev-subtext">Connect <span>A.S.T.R.O.</span> through public HTTP, local MCP, or n8n.</div>
           <div className="code-block">
-            <div className="code-label"><span className="lang">hosted endpoints</span></div>
-            <div>/api/signal ? composite, regime and component scores</div>
-            <div>/api/context ? market intelligence and score explanations</div>
-            <div>/api/basket ? ten assets, quotes, gates and decision-support details</div>
-            <p>Authenticate with your private X-API-Key header. One request per resource per 15 minutes.</p>
+            <div className="code-label"><span className="lang">credential-free HTTPS endpoints</span></div>
+            <div>/api/public/signal — composite, regime and components</div>
+            <div>/api/public/context — market evidence and explanations</div>
+            <div>/api/public/basket — ten assets and decision-support details</div>
+            <p>No signup, API key, trial activation, or payment required for these public resources. Poll conservatively and inspect source timestamps and stale/missing flags; a recent response does not guarantee every input is fresh.</p>
           </div>
-          <p><a href="/mcp" style={{color:'#f5c518'}}>Use ASTRO through MCP ? setup and source download</a></p>
-          <p><a href="/trial" style={{color:'#f5c518'}}>Start a free one-month API trial</a> ? no card or social engagement required.</p>
+          <p><a href="/mcp" style={{color:'#f5c518'}}>MCP setup and source download</a> — Python 3.10+, local stdio transport.</p>
+          <p><a href="/explore/" style={{color:'#f5c518'}}>Open Signal Explorer</a></p>
+          <p><a href="/explore/astro-n8n-market-brief.json" style={{color:'#f5c518'}}>Download the n8n market-brief workflow</a> · <a href="/explore/astro-n8n-setup.txt" style={{color:'#f5c518'}}>Setup instructions</a></p>
+          <p>Existing authenticated accounts remain separate. The optional consumer bot is paper-only; purchasing it is not required for public intelligence access.</p>
         </div>
 
         <div className="cta-section">
-          <div className="cta-label">
-            <span>$9 / month</span> Â· recurring Â· cancel anytime
-          </div>
-          <a className="cta-btn" href="https://buy.stripe.com/aFa9ATa4d1tk7DkbgcaAw01">ACQUIRE ACCESS</a>
+          <div className="cta-label"><span>Explore the evidence. Connect your workflow.</span></div>
+          <a className="cta-btn" href="/explore/">EXPLORE ASTRO</a>
         </div>
 
         <DataAttribution />
+        <a href="/" aria-label="Ran by JARVIS" style={{position:'fixed',bottom:12,right:12,display:'flex',alignItems:'center',gap:8,padding:'6px 12px',borderRadius:24,background:'rgba(15,25,35,0.75)',backdropFilter:'blur(10px)',color:'#60d5ff',opacity:0.7,textDecoration:'none',fontSize:11,zIndex:10}} onMouseEnter={e => e.currentTarget.style.opacity = 1} onMouseLeave={e => e.currentTarget.style.opacity = 0.7}>
+          <img src="/jarvis-emblem.jpg" alt="" width="24" height="24" style={{borderRadius:'50%'}} />RAN BY JARVIS
+        </a>
 
       </div>
     </>
