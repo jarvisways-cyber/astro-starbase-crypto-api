@@ -32,11 +32,15 @@ No replacement ZIP or new consumer version has been published.
 
 The private engine repository now preserves an archival branch containing 143
 hash-verified deployed Python source files, retaining the collector and API/paper
-release trees separately. Another 31 source files preserve the deployed wrappers,
-Explorer and separate shadow runner, including their available tests. An installed
-Python package inventory is captured, but is not a reproducible lockfile.
-Service templates, complete regression coverage and clean restoration still
-need verification. Private source and runtime data are excluded from this repo.
+release trees separately. Another 45 support files preserve the deployed wrappers,
+Explorer, separate shadow runner, route assets and legacy key-sync dependencies.
+On October 26, a fresh Linux Python 3.12 environment installed 21 pinned runtime
+packages from SHA-256-verified wheels. Dependency validation, archived Python
+compilation and key-sync import checks passed. A credential-free effective
+configuration inventory covers eight services.
+This is not a complete bare-host service/data restore: credential provisioning,
+installable service templates and full restore/rollback still need verification.
+Private source and runtime data are excluded from this repo.
 
 Neither main branch has been replaced. Production services, active weights, and
 the frozen Module 8 forward trial are unchanged by this repository work.
