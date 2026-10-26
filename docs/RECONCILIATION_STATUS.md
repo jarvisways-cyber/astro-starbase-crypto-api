@@ -19,9 +19,10 @@ The existing 3.2.0-paper release ZIP was downloaded again, checksum and internal
 manifest verified, and its network-blocked self-check passed. Its mapper accepted
 today's fresh ten-asset response. Nullable-input checks found compatibility gaps;
 see [the consumer review](CONSUMER_BOT.md#compatibility-review--october-25-2026).
-An isolated 3.2.1-paper-rc2 candidate addresses explicit unavailable auxiliary
-values and supplied per-asset signal-health conflicts. It passes 139 offline
-tests and its packaged startup self-check. This does not certify all hosted
+An isolated 3.2.1-paper-rc3 candidate addresses explicit unavailable auxiliary
+values, supplied per-asset signal-health conflicts, and incompatible imported
+history. It refuses mixed/untagged history without deleting or relabeling it.
+It passes 144 offline tests and its packaged startup self-check. This does not certify all hosted
 metadata semantics, authenticated polling, or sustained consumer operation.
 No replacement ZIP or new consumer version has been published.
 
