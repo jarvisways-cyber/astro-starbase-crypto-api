@@ -118,3 +118,10 @@ of 50 alone does not prove source health or failure.
 No customer order execution occurs through these endpoints. Paper trading and
 shadow learning are separate. Operational tests and historical research do not
 establish guaranteed returns.
+
+## Trade Bot purchase benefit
+
+Every paid ASTRO Trade Bot purchase includes **lifetime API access**, usable with
+ASTRO or your own bots, scripts, dashboards and compatible integrations. No
+separate API subscription or renewal fee; published technical rate limits apply.
+See [purchase terms](https://astro-event-horizon.vercel.app/terms).

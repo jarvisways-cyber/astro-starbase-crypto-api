@@ -1,56 +1,39 @@
-# Optional consumer bot / project support
+# ASTRO Trade Bot — consumer distribution
 
-The [ASTRO Trade Bot](https://64.227.50.56/bot) is a separate
-one-time software purchase. Buying it is **not required** to use the API.
+## Current consumer release: 3.2.1-paper
 
-## Current release: 3.2.0-paper
+`ASTRO_TradeBot_v3_2_1_Paper.zip`
 
-`ASTRO_TradeBot_v3_2_Paper.zip`
+SHA-256: `b070594be87d1ff0c6bc46a8077cad181fe6351d8a2689d20e2148fef630432f`
 
-SHA-256: `1775907cc4925127dc97e863b14406ac2e9ff45d60af5425056e2203f964f012`
+A Windows paper-trading client using ASTRO hosted intelligence. This release
+improves missing-data handling, per-asset signal-health validation and history
+compatibility. It is not the private Mother engine or an automatically learning
+local Module 8. See the release notes for verification scope.
 
-The paid release repository now serves this artifact instead of v3.1. The
-existing `v1.0` tag is retained for purchase-link compatibility, not as the
-software version. The original ZIP is preserved separately for rollback.
+## One purchase. Lifetime API access.
 
-### What changed
+Every paid ASTRO Trade Bot purchase includes **lifetime API access**, usable with
+ASTRO **or your own bots, scripts, dashboards and compatible integrations**.
+Running our bot is not required. **No scheduled expiry, separate API subscription
+or renewal fee.** No founding-year cutoff or three-month expiration applies.
+The one-time bot price remains $365. Lifetime consumer-software updates are included
+as releases become available. Published API usage limits still apply; keep keys private.
+Downloading the ZIP does not itself grant an API key; paid fulfillment issues it.
 
-- Fill-driven paper accounting, guarded entry and restart recovery.
-- Current hosted signal/context/basket mappings and header authentication.
-- Timestamp-aware observations and hosted rankings; no owner CoinGecko key needed.
-- Locally encrypted ASTRO API-key setup and isolated Python dependencies.
-- Visible engine and Watch consoles. Optional AI helpers do not auto-start.
+## Install and limitations
 
-Windows and Python 3.12+ are required. Extract into a **new folder** and run
-`RUN_ASTRO.bat`; preserve your old installation. No old-account migration is included.
+Windows and Python 3.12+ required. Extract into a **new folder** and run
+`RUN_ASTRO.bat`. Preserve the old installation; do not copy old state or credentials.
+The launcher opens a local masked API-key prompt. No Kraken credentials are required.
+**Real-money orders, Hive uploads and automatic weight promotion are disabled.**
 
-**No Kraken credentials are required or collected. Real-money orders are disabled.**
-The exchange adapter is retained for a future, separately validated opt-in live
-release. Multi-exchange support is a roadmap, not a current feature. Hive uploads
-and automatic strategy promotion remain disabled.
+144 offline tests, startup checks, loopback HTTP recovery and a two-hour empty-ledger
+outage test passed. Independent-PC certification, live paid-checkout delivery and
+active-position soak remain unverified. No trading advantage or profit is promised.
 
-### Verification and limitations
+This repository is private distribution storage; customers use their purchase
+download link. The historical `v1.0` delivery tag is a delivery alias, not the
+consumer software version. Previous packages are retained separately for rollback.
 
-134 offline regression tests passed. Clean dependency installation, packaged
-offline startup, downloaded GitHub bytes and file hashes were checked. Current
-hosted responses passed a three-endpoint, ten-asset adapter check with zero orders.
-Independent-PC certification and sustained paper performance remain outstanding.
-No profitability or calibrated winning-probability claim is made.
-
-## Purchase and API access
-
-The one-time bot price remains $365. Paid purchases in the founding year,
-September 30, 2026 through September 29, 2027 (Alaska time), include lifetime
-consumer-software updates and full API-plan access at no additional subscription
-charge for as long as ASTRO operates the service, subject to published usage limits.
-The purchase window ending does not end those benefits.
-
-See [Founding Supporter details](FOUNDING_SUPPORTERS.md) and the
-[terms](https://64.227.50.56/terms). Outside that window, the
-standard included API period is three calendar months. The standalone API
-subscription remains separate. Existing subscriptions are not automatically canceled.
-
-Webhook fulfillment now issues the bot download and API key together, reusing the
-same key on retries. Automated fixture tests cover cohort boundaries, retries,
-revocation preservation and access export. No fresh real purchase or customer
-email was sent as part of those tests.
+[API documentation](https://github.com/jarvisways-cyber/astro-starbase-crypto-api)

@@ -19,7 +19,7 @@ export default function Bot() {
     <>
       <Head>
         <title>A.S.T.R.O. // TRADE BOT TERMINAL</title>
-        <meta name="description" content="A.S.T.R.O. — paper-trading beta and Founding Supporter offer, September 30, 2026 through September 29, 2027." />
+        <meta name="description" content="ASTRO Trade Bot: Windows paper-trading software with lifetime API access for your own bots, scripts, dashboards and integrations. No separate API subscription or renewal fee." />
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
       </Head>
       <style>{`
@@ -294,14 +294,14 @@ export default function Bot() {
         <div className="bullet-list">
           <div><span className="arrow">▶</span>Full trading engine — one-time purchase, no recurring license</div>
           <div><span className="arrow">▶</span>Windows launcher; Python 3.12+ required</div>
-          <div><span className="arrow">▶</span>Founding-year purchases: API access included while ASTRO operates the service</div>
+          <div><span className="arrow">▶</span>Lifetime API access included with every bot purchase — use any compatible integration</div>
           <div><span className="arrow">▶</span>1–10 aggression dial, set per session</div>
           <div><span className="arrow">▶</span>Lifetime consumer-software updates; current execution is simulated only</div>
         </div>
 
-        <div className="section-header">— FOUNDING SUPPORTER YEAR ]——————————————————————————————————————————</div>
+        <div className="section-header">— LIFETIME API ACCESS ]——————————————————————————————————————————</div>
         <div className="body-section">
-          <p>Qualifying paid bot purchases from September 30, 2026 through September 29, 2027 (Alaska time) include API access without an additional subscription charge for as long as ASTRO operates the service, subject to published usage limits. The purchase window ending does not end your benefits.</p>
+          <p>Every paid ASTRO Trade Bot purchase includes lifetime API access, with no scheduled expiry, separate subscription, or renewal fee. Use your access with ASTRO or your own bots, scripts, dashboards, and compatible integrations. Running our bot is not required. Published API usage limits apply.</p>
         </div>
 
         <div className="ps-line">
@@ -310,8 +310,8 @@ export default function Bot() {
 
         <div className="body-section">
           <p>Your support funds continued development of ASTRO and Hive. Feedback, release testing and future Hive participation are opt-in. Live trading and broader exchange support remain future development goals, not current features or promised release dates.</p>
-          <p>One-time bot purchase; no automatic API subscription is created. Existing standalone API subscriptions are separate. Outside the founding window, the standard offer is three calendar months of API access, then a separate subscription if you choose to continue.</p>
-          <p><a href="/terms" style={{color: "#f5c518"}}>Read the Founding Supporter terms and API usage limits</a></p>
+          <p>One purchase includes the bot and lifetime API access. There is no founding-year cutoff or three-month expiry. Standalone API subscriptions remain a separate option for people who do not buy the bot.</p>
+          <p><a href="/terms" style={{color: "#f5c518"}}>Read the lifetime API terms and usage limits</a></p>
         </div>
         <div className="cta-section">
           <div className="cta-label">

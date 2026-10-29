@@ -1,29 +1,18 @@
-# ASTRO Founding Supporters
+# ASTRO Trade Bot — lifetime API access
 
-Qualifying paid Trade Bot purchases from **September 30, 2026 through
-September 29, 2027**, inclusive, America/Anchorage time, receive:
+Every paid ASTRO Trade Bot purchase includes **lifetime API access** and lifetime
+consumer-software updates as releases become available. No founding-year cutoff,
+scheduled expiry, separate API subscription, or renewal fee applies.
 
-- The current paper-trading beta.
-- Lifetime consumer-software updates, as releases become available.
-- Full API-plan access without an additional subscription charge for as long
-  as ASTRO operates the API service, subject to published usage limits.
-- Optional feedback, release testing and future opt-in Hive research opportunities.
+Use the API with ASTRO **or your own bots, scripts, dashboards and compatible
+integrations**. Running our bot is not required. Keep your key private. Published
+technical rate limits apply (currently one request per resource per 900 seconds
+per key); this is not an unlimited-throughput or profitability promise.
 
-The cohort window ending does not end a qualifying supporter's benefits. Live
-trading and broader exchange support are future goals, not current capabilities
-or promised delivery dates. This offer does not guarantee indefinite service
-operation, unlimited throughput or trading returns.
+The one-time bot price remains $365. The current consumer release is paper-only.
+Standalone API subscriptions remain separate for people who do not purchase the bot.
+The purchase email provides an API key and a download link. Expiration of the
+download link does not expire API access. No existing purchasers require migration.
 
-The one-time bot price remains $365. The separate standalone API plan remains
-$9/month. Buying the bot does not create or automatically cancel a subscription.
-Existing subscribers who also buy the bot should contact support to review billing.
-
-The private purchase email contains both the download and the API key. Keep the
-key private; synchronization normally takes about one minute. A download-link
-expiry does not end the API entitlement or software ownership.
-
-Outside the founding window, the standard included API period is three calendar
-months. Continued access then requires a separately chosen subscription.
-
-[Purchase and service terms](https://64.227.50.56/terms) ·
-[Trade Bot](https://64.227.50.56/bot)
+This universal offer supersedes the earlier founding-year/three-month offer.
+See [terms](https://astro-event-horizon.vercel.app/terms).
