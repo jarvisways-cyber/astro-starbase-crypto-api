@@ -35,7 +35,16 @@ export default function Bot() {
           display: flex;
           justify-content: center;
         }
-        .terminal { max-width: 960px; width: 100%; text-align: center; }
+        #__next { width: 100%; max-width: 960px; min-width: 0; }
+        .terminal { max-width: 960px; min-width: 0; width: 100%; text-align: center; }
+        .top-bar, .section-header { overflow-wrap: anywhere; }
+        .bottom-bar { flex-wrap: wrap; }
+        @media (max-width: 480px) {
+          body { padding: 12px; }
+          .astro-logo { font-size: 28px; }
+          .sub-logo { letter-spacing: 2px; }
+          .top-bar, .section-header { font-size: 12px; }
+        }
         .top-bar {
           display: flex;
           justify-content: center;

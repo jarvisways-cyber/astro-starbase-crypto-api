@@ -405,6 +405,12 @@ export default function Home() {
           <a className="cta-btn" href="https://buy.stripe.com/aFa9ATa4d1tk7DkbgcaAw01">ACQUIRE ACCESS</a>
         </div>
 
+        <div className="about-section">
+          <h2>Trade Bot + lifetime API access</h2>
+          <p>Every paid ASTRO Trade Bot purchase includes lifetime API access with no scheduled expiry, separate subscription or renewal fee. Use it with ASTRO or your own bots, scripts, dashboards and compatible integrations. Running our bot is not required; published API usage limits apply.</p>
+          <p>The consumer bot is currently paper-only. <a href="/bot" style={{color:'#f5c518'}}>See the Trade Bot</a> and <a href="/terms" style={{color:'#f5c518'}}>purchase terms</a>.</p>
+        </div>
+
         <DataAttribution />
 
       </div>
